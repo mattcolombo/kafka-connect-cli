@@ -12,11 +12,11 @@ import (
 	"os"
 )
 
-var ConnectConfiguration Configuration = importConfig()
+var ConnectConfiguration Configuration
 
-func importConfig() Configuration {
+func ImportConfig(configPath string) Configuration {
 	fmt.Println("I am importing the configuration file")
-	file, err := os.Open("./connect-config.json")
+	file, err := os.Open(configPath) // previously used hardcoded ./connect-config.json
 	if err != nil {
 		log.Fatal(err)
 	}

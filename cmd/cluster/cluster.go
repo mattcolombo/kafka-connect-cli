@@ -29,6 +29,7 @@ func init() {
 }
 
 func getConnectInfo() {
+	fmt.Println(utilities.ConnectConfiguration.Hostname[0])
 	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/"
 	response, err := client.Get(address)
 	if err != nil {
