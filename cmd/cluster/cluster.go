@@ -16,6 +16,12 @@ var Cluster = &cobra.Command{
 	Use:   "cluster",
 	Short: "short description",
 	Long:  "long description",
+}
+
+var ClusterGet = &cobra.Command{
+	Use:   "get",
+	Short: "short description",
+	Long:  "long description",
 	Run: func(cmd *cobra.Command, args []string) {
 		getConnectInfo()
 		if showPlugins {
@@ -25,7 +31,8 @@ var Cluster = &cobra.Command{
 }
 
 func init() {
-	Cluster.Flags().BoolVarP(&showPlugins, "show-plugins", "", false, "whether the command should show or not the list of plugins currently installed")
+	Cluster.AddCommand(ClusterGet)
+	ClusterGet.Flags().BoolVarP(&showPlugins, "show-plugins", "", false, "whether the command should show or not the list of plugins currently installed")
 }
 
 func getConnectInfo() {

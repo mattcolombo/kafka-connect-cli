@@ -12,13 +12,19 @@ import (
 	"os"
 )
 
-var ConnectConfiguration Configuration
+// var ConnectConfiguration Configuration
+// var ConfigPath string
+// var ConnectConfiguration Configuration = ImportConfig(ConfigPath)
+var ConnectConfiguration Configuration = ImportConfig()
 
-func ImportConfig(configPath string) Configuration {
+//func ImportConfig(configPath string) Configuration {
+func ImportConfig() Configuration {
 	fmt.Println("I am importing the configuration file")
-	file, err := os.Open(configPath) // previously used hardcoded ./connect-config.json
+	file, err := os.Open(os.Getenv("CONNECTCFG")) // previously used hardcoded ./connect-config.json
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Please add the configuration file as an environment variable named CONNECTCFG")
+		fmt.Println(err)
+		os.Exit(1)
 	}
 	defer file.Close()
 
@@ -26,7 +32,9 @@ func ImportConfig(configPath string) Configuration {
 	configuration := Configuration{}
 	err = decoder.Decode(&configuration)
 	if err != nil {
-		log.Fatal(err)
+		//fmt.Println("Error encountered while decoding the configuration file")
+		fmt.Println(err)
+		os.Exit(1)
 	}
 	return configuration
 }
