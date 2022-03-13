@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/mattcolombo/kafka-connect-cli/cmd/cluster"
 	"github.com/spf13/cobra"
 )
 
@@ -13,11 +14,11 @@ var rootCmd = &cobra.Command{
 	Long:  "long description",
 }
 
-/*func init() {
-	rootCmd.AddCommand(hello.Hello)
-	rootCmd.AddCommand(goodbye.Bye)
-	rootCmd.AddCommand(time.Time)
-}*/
+func init() {
+	rootCmd.AddCommand(cluster.Cluster)
+	//rootCmd.AddCommand(goodbye.Bye)
+	//rootCmd.AddCommand(time.Time)
+}
 
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
