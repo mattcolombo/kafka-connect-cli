@@ -29,7 +29,7 @@ func init() {
 }
 
 func getConnectInfo() {
-	address := "http://" + utilities.ConnectConfiguration.Hostname + "/"
+	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/"
 	response, err := client.Get(address)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
@@ -40,7 +40,7 @@ func getConnectInfo() {
 }
 
 func getConnectPlugins() {
-	address := "http://" + utilities.ConnectConfiguration.Hostname + "/connector-plugins"
+	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/connector-plugins"
 	response, err := client.Get(address)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)

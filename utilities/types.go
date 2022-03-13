@@ -1,7 +1,7 @@
 package utilities
 
 type Configuration struct {
-	Hostname  string
+	Hostname  []string
 	Operation string
 	TlsEnable bool
 	CaPath    string
