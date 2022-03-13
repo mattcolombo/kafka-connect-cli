@@ -23,7 +23,9 @@ var ClusterGet = &cobra.Command{
 	Short: "short description",
 	Long:  "long description",
 	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("--- Connect Cluster Info ---")
 		getConnectInfo()
+		fmt.Println("--- Installed Plugins ---")
 		if showPlugins {
 			getConnectPlugins()
 		}
@@ -36,7 +38,6 @@ func init() {
 }
 
 func getConnectInfo() {
-	fmt.Println(utilities.ConnectConfiguration.Hostname[0])
 	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/"
 	response, err := client.Get(address)
 	if err != nil {
