@@ -16,3 +16,6 @@
 
 # Configuration file temporarily not 
 connect-config.json
+
+# todo list does not need to be published
+TODO.txt
