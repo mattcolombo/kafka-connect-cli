@@ -13,3 +13,9 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Configuration file temporarily not 
+connect-config.json
+
+# todo list does not need to be published
+TODO.txt
