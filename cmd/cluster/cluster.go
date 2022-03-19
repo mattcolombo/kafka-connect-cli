@@ -3,14 +3,14 @@ package cluster
 import (
 	"fmt"
 	"io/ioutil"
-	"net/http"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
 )
 
 var showPlugins bool
-var client *http.Client = utilities.CreateClient(utilities.ConnectConfiguration)
+
+//var client *http.Client = utilities.CreateClient(utilities.ConnectConfiguration)
 
 var Cluster = &cobra.Command{
 	Use:   "cluster",
@@ -39,7 +39,7 @@ func init() {
 
 func getConnectInfo() {
 	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/"
-	response, err := client.Get(address)
+	response, err := utilities.ConnectClient.Get(address)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 	} else {
@@ -50,7 +50,7 @@ func getConnectInfo() {
 
 func getConnectPlugins() {
 	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/connector-plugins"
-	response, err := client.Get(address)
+	response, err := utilities.ConnectClient.Get(address)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 	} else {

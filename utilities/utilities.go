@@ -16,6 +16,7 @@ import (
 // var ConfigPath string
 // var ConnectConfiguration Configuration = ImportConfig(ConfigPath)
 var ConnectConfiguration Configuration = ImportConfig()
+var ConnectClient *http.Client = createClient(ConnectConfiguration)
 
 //func ImportConfig(configPath string) Configuration {
 func ImportConfig() Configuration {
@@ -69,7 +70,7 @@ func createTlsClient(capath string, certpath string, keypath string) *http.Clien
 	return &client
 }
 
-func CreateClient(conf Configuration) *http.Client {
+func createClient(conf Configuration) *http.Client {
 	if conf.TlsEnable {
 		return createTlsClient(conf.CaPath, conf.CertPath, conf.KeyPath)
 	} else {

@@ -23,8 +23,6 @@ func init() {
 
 	// adding the subcommands required by the CLI tool
 	rootCmd.AddCommand(cluster.Cluster)
-	//rootCmd.AddCommand(goodbye.Bye)
-	//rootCmd.AddCommand(time.Time)
 }
 
 func Execute() {
