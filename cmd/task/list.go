@@ -8,36 +8,26 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var showStatus, showInfo bool
+var connectorName string
 
 var TaskListCmd = &cobra.Command{
 	Use:   "list",
-	Short: "short description",
-	Long:  "long description",
+	Short: "task list short description",
+	Long:  "task list long description",
 	Run: func(cmd *cobra.Command, args []string) {
-		var listURL string = buildAddress()
-		fmt.Println("making a call to", listURL)
-		doCall(listURL)
+		var taskListURL string = buildAddress()
+		fmt.Println("making a call to", taskListURL)
+		doCall(taskListURL)
 	},
 }
 
 func init() {
-	TaskListCmd.Flags().BoolVarP(&showStatus, "show-status", "", false, "whether the command should show or not the status for each connector")
-	TaskListCmd.Flags().BoolVarP(&showInfo, "show-info", "", false, "whether the command should expand or not on extra info for each connector")
+	TaskListCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to get tasks for (required)")
+	TaskListCmd.MarkFlagRequired("name")
 }
 
 func buildAddress() string {
-	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/connectors"
-	if showStatus && showInfo {
-		address += "?expand=status&expand=info"
-		return address
-	}
-	if showStatus {
-		address += "?expand=status"
-	}
-	if showInfo {
-		address += "?expand=info"
-	}
+	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/connectors/" + connectorName + "/tasks"
 	return address
 }
 

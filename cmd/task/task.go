@@ -6,8 +6,8 @@ import (
 
 var TaskCmd = &cobra.Command{
 	Use:   "task",
-	Short: "short description",
-	Long:  "long description",
+	Short: "task short description",
+	Long:  "task long description",
 }
 
 func init() {
