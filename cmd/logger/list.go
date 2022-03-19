@@ -17,7 +17,7 @@ var LoggerListCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostname {
 			var loggerListURL string = buildAddress(host)
-			fmt.Println("--- Loggers Info for", host, "---")
+			fmt.Println("--- Loggers Info for Connect worker at", host, "---")
 			fmt.Println("making a call to", loggerListURL) // control statement print - TOREMOVE
 			doCall(loggerListURL)
 		}
