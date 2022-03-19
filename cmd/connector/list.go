@@ -16,7 +16,7 @@ var ConnectorListCmd = &cobra.Command{
 	Long:  "long description",
 	Run: func(cmd *cobra.Command, args []string) {
 		var listURL string = buildAddress()
-		fmt.Println("making a call to", listURL)
+		fmt.Println("making a call to", listURL) // control statement print - TOREMOVE
 		doCall(listURL)
 	},
 }

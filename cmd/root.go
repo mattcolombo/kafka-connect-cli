@@ -20,10 +20,6 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
-	// adding the flag required for getting the path to the configuration file. This is required always
-	//rootCmd.PersistentFlags().StringVar(&configPath, "connect-config", "", "the path to the configuration file containing the information about the Connect target (required)")
-	//rootCmd.MarkPersistentFlagRequired("connect-config")
-
 	// adding the subcommands required by the CLI tool
 	rootCmd.AddCommand(cluster.ClusterCmd)
 	rootCmd.AddCommand(connector.ConnectorCmd)
@@ -35,7 +31,6 @@ func init() {
 }
 
 func Execute() {
-	//os.Setenv("CONNECTCFG", configPath)
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)

@@ -12,16 +12,12 @@ import (
 	"os"
 )
 
-// var ConnectConfiguration Configuration
-// var ConfigPath string
-// var ConnectConfiguration Configuration = ImportConfig(ConfigPath)
 var ConnectConfiguration Configuration = ImportConfig()
 var ConnectClient *http.Client = createClient(ConnectConfiguration)
 
-//func ImportConfig(configPath string) Configuration {
 func ImportConfig() Configuration {
-	fmt.Println("I am importing the configuration file")
-	file, err := os.Open(os.Getenv("CONNECTCFG")) // previously used hardcoded ./connect-config.json
+	fmt.Println("I am importing the configuration file") // control statement print - TOREMOVE
+	file, err := os.Open(os.Getenv("CONNECTCFG"))        // previously used hardcoded ./connect-config.json
 	if err != nil {
 		fmt.Println("Please add the configuration file as an environment variable named CONNECTCFG")
 		fmt.Println(err)
@@ -33,7 +29,6 @@ func ImportConfig() Configuration {
 	configuration := Configuration{}
 	err = decoder.Decode(&configuration)
 	if err != nil {
-		//fmt.Println("Error encountered while decoding the configuration file")
 		fmt.Println(err)
 		os.Exit(1)
 	}
@@ -71,7 +66,7 @@ func createTlsClient(capath string, certpath string, keypath string) *http.Clien
 }
 
 func createClient(conf Configuration) *http.Client {
-	fmt.Println("I am creating the connect client")
+	fmt.Println("I am creating the connect client") // control statement print - TOREMOVE
 	if conf.TlsEnable {
 		return createTlsClient(conf.CaPath, conf.CertPath, conf.KeyPath)
 	} else {

@@ -16,7 +16,7 @@ var TaskListCmd = &cobra.Command{
 	Long:  "task list long description",
 	Run: func(cmd *cobra.Command, args []string) {
 		var taskListURL string = buildAddress()
-		fmt.Println("making a call to", taskListURL)
+		fmt.Println("making a call to", taskListURL) // control statement print - TOREMOVE
 		doCall(taskListURL)
 	},
 }
