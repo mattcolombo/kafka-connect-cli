@@ -6,8 +6,8 @@ import (
 
 var LoggerCmd = &cobra.Command{
 	Use:   "logger",
-	Short: "short description",
-	Long:  "long description",
+	Short: "logger short description",
+	Long:  "logger long description",
 }
 
 func init() {

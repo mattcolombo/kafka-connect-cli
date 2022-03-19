@@ -12,32 +12,20 @@ var showStatus, showInfo bool
 
 var LoggerListCmd = &cobra.Command{
 	Use:   "list",
-	Short: "short description",
-	Long:  "long description",
+	Short: "logger list short description",
+	Long:  "logger list long description",
 	Run: func(cmd *cobra.Command, args []string) {
-		var listURL string = buildAddress()
-		fmt.Println("making a call to", listURL)
-		doCall(listURL)
+		for _, host := range utilities.ConnectConfiguration.Hostname {
+			var loggerListURL string = buildAddress(host)
+			fmt.Println("--- Loggers Info for", host, "---")
+			fmt.Println("making a call to", loggerListURL)
+			doCall(loggerListURL)
+		}
 	},
 }
 
-func init() {
-	LoggerListCmd.Flags().BoolVarP(&showStatus, "show-status", "", false, "whether the command should show or not the status for each connector")
-	LoggerListCmd.Flags().BoolVarP(&showInfo, "show-info", "", false, "whether the command should expand or not on extra info for each connector")
-}
-
-func buildAddress() string {
-	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/connectors"
-	if showStatus && showInfo {
-		address += "?expand=status&expand=info"
-		return address
-	}
-	if showStatus {
-		address += "?expand=status"
-	}
-	if showInfo {
-		address += "?expand=info"
-	}
+func buildAddress(host string) string {
+	address := "http://" + host + "/admin/loggers"
 	return address
 }
 
