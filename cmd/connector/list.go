@@ -15,8 +15,7 @@ var ListCmd = &cobra.Command{
 	Short: "short description",
 	Long:  "long description",
 	Run: func(cmd *cobra.Command, args []string) {
-		var listURL string
-		listURL = buildAddress()
+		var listURL string = buildAddress()
 		fmt.Println("making a call to", listURL)
 		doCall(listURL)
 	},

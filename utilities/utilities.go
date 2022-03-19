@@ -71,6 +71,7 @@ func createTlsClient(capath string, certpath string, keypath string) *http.Clien
 }
 
 func createClient(conf Configuration) *http.Client {
+	fmt.Println("I am creating the connect client")
 	if conf.TlsEnable {
 		return createTlsClient(conf.CaPath, conf.CertPath, conf.KeyPath)
 	} else {
