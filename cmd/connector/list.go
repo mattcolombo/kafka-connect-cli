@@ -10,7 +10,7 @@ import (
 
 var showStatus, showInfo bool
 
-var ListCmd = &cobra.Command{
+var ConnectorListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "short description",
 	Long:  "long description",
@@ -22,8 +22,8 @@ var ListCmd = &cobra.Command{
 }
 
 func init() {
-	ListCmd.Flags().BoolVarP(&showStatus, "show-status", "", false, "whether the command should show or not the status for each connector")
-	ListCmd.Flags().BoolVarP(&showInfo, "show-info", "", false, "whether the command should expand or not on extra info for each connector")
+	ConnectorListCmd.Flags().BoolVarP(&showStatus, "show-status", "", false, "whether the command should show or not the status for each connector")
+	ConnectorListCmd.Flags().BoolVarP(&showInfo, "show-info", "", false, "whether the command should expand or not on extra info for each connector")
 }
 
 func buildAddress() string {

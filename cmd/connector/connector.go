@@ -11,5 +11,5 @@ var ConnectorCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorCmd.AddCommand(ListCmd)
+	ConnectorCmd.AddCommand(ConnectorListCmd)
 }

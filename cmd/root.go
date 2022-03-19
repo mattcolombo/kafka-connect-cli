@@ -6,6 +6,8 @@ import (
 
 	"github.com/mattcolombo/kafka-connect-cli/cmd/cluster"
 	"github.com/mattcolombo/kafka-connect-cli/cmd/connector"
+	"github.com/mattcolombo/kafka-connect-cli/cmd/logger"
+	"github.com/mattcolombo/kafka-connect-cli/cmd/task"
 	"github.com/spf13/cobra"
 )
 
@@ -25,6 +27,11 @@ func init() {
 	// adding the subcommands required by the CLI tool
 	rootCmd.AddCommand(cluster.ClusterCmd)
 	rootCmd.AddCommand(connector.ConnectorCmd)
+	rootCmd.AddCommand(task.TaskCmd)
+	rootCmd.AddCommand(logger.LoggerCmd)
+
+	// disabled the default completion command as it is not going to be necessary
+	rootCmd.CompletionOptions.DisableDefaultCmd = true
 }
 
 func Execute() {
