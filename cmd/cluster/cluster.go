@@ -12,7 +12,7 @@ var showPlugins bool
 
 //var client *http.Client = utilities.CreateClient(utilities.ConnectConfiguration)
 
-var Cluster = &cobra.Command{
+var ClusterCmd = &cobra.Command{
 	Use:   "cluster",
 	Short: "short description",
 	Long:  "long description",
@@ -25,15 +25,15 @@ var ClusterGet = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("--- Connect Cluster Info ---")
 		getConnectInfo()
-		fmt.Println("--- Installed Plugins ---")
 		if showPlugins {
+			fmt.Println("--- Installed Plugins ---")
 			getConnectPlugins()
 		}
 	},
 }
 
 func init() {
-	Cluster.AddCommand(ClusterGet)
+	ClusterCmd.AddCommand(ClusterGet)
 	ClusterGet.Flags().BoolVarP(&showPlugins, "show-plugins", "", false, "whether the command should show or not the list of plugins currently installed")
 }
 

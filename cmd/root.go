@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/cmd/cluster"
+	"github.com/mattcolombo/kafka-connect-cli/cmd/connector"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +23,8 @@ func init() {
 	//rootCmd.MarkPersistentFlagRequired("connect-config")
 
 	// adding the subcommands required by the CLI tool
-	rootCmd.AddCommand(cluster.Cluster)
+	rootCmd.AddCommand(cluster.ClusterCmd)
+	rootCmd.AddCommand(connector.ConnectorCmd)
 }
 
 func Execute() {
