@@ -35,7 +35,7 @@ func buildRestartAddress() string {
 
 func doRestartCall(address string) {
 	//r := strings.NewReader("")
-	response, err := utilities.ConnectClient.Post(address, "application/json", nil)
+	response, err := utilities.ConnectClient.Post(address, "*/*", nil)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 	} else {
