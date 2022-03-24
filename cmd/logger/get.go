@@ -8,26 +8,33 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var LoggerListCmd = &cobra.Command{
-	Use:   "list",
-	Short: "logger list short description",
-	Long:  "logger list long description",
+var getPluginClass string
+
+var LoggerGetCmd = &cobra.Command{
+	Use:   "get",
+	Short: "logger get short description",
+	Long:  "logger get long description",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostname {
-			var loggerListURL string = buildListAddress(host)
+			var loggerListURL string = buildGetAddress(host)
 			fmt.Println("--- Loggers Info for Connect worker at", host, "---")
 			fmt.Println("making a call to", loggerListURL) // control statement print - TOREMOVE
-			doListCall(loggerListURL)
+			doGetCall(loggerListURL)
 		}
 	},
 }
 
-func buildListAddress(host string) string {
-	address := "http://" + host + "/admin/loggers"
+func init() {
+	LoggerGetCmd.Flags().StringVarP(&getPluginClass, "plugin-class", "", "", "plugin class to check for log level (required)")
+	LoggerGetCmd.MarkFlagRequired("plugin-class")
+}
+
+func buildGetAddress(host string) string {
+	address := "http://" + host + "/admin/loggers/" + getPluginClass
 	return address
 }
 
-func doListCall(address string) {
+func doGetCall(address string) {
 	response, err := utilities.ConnectClient.Get(address)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)

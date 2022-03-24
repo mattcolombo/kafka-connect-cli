@@ -12,4 +12,6 @@ var LoggerCmd = &cobra.Command{
 
 func init() {
 	LoggerCmd.AddCommand(LoggerListCmd)
+	LoggerCmd.AddCommand(LoggerGetCmd)
+	LoggerCmd.AddCommand(LoggerSetCmd)
 }
