@@ -39,6 +39,9 @@ func doRestartCall(address string) {
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 	} else {
+		if response.StatusCode == 204 {
+			fmt.Println("Connector restarted successfully")
+		}
 		fmt.Println("HTTP Response:", response.StatusCode, http.StatusText(response.StatusCode))
 		data, _ := ioutil.ReadAll(response.Body)
 		utilities.PrettyPrint(data)
