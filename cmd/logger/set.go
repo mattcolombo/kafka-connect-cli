@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
@@ -19,10 +20,15 @@ var LoggerSetCmd = &cobra.Command{
 	Long:  "logger set long description",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostname {
-			var loggerListURL string = buildSetAddress(host)
-			fmt.Println("--- Loggers Info for Connect worker at", host, "---")
+			var loggerListURL string = host + "/admin/loggers/" + setPluginClass
+			fmt.Println("--- Setting Log Level for Connect worker at", host, "---")
 			fmt.Println("making a call to", loggerListURL) // control statement print - TOREMOVE
-			doSetCall(loggerListURL)
+			response, err := utilities.DoCallByHost(http.MethodPut, loggerListURL, bytes.NewBuffer(buildSetPayload()))
+			if err != nil {
+				fmt.Printf("The HTTP request failed with error %s\n", err)
+			} else {
+				printSetResponse(response)
+			}
 		}
 	},
 }
@@ -34,28 +40,21 @@ func init() {
 	LoggerSetCmd.MarkFlagRequired("level")
 }
 
-func buildSetAddress(host string) string {
-	address := "http://" + host + "/admin/loggers/" + setPluginClass
-	return address
-}
-
-func doSetCall(address string) {
+func buildSetPayload() []byte {
 	payload, err := json.Marshal(map[string]interface{}{"level": setLevel})
 	if err != nil {
 		fmt.Printf("JSON build failed with error %s\n", err)
 	}
+	return payload
+}
 
-	request, err := http.NewRequest(http.MethodPut, address, bytes.NewBuffer(payload))
-	request.Header.Set("Content-Type", "application/json")
-	if err != nil {
-		fmt.Printf("Creation of request failed with error %s\n", err)
-	}
+func printSetResponse(response *http.Response) {
+	defer response.Body.Close()
 
-	response, err := utilities.ConnectClient.Do(request)
+	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-	} else {
-		data, _ := ioutil.ReadAll(response.Body)
-		utilities.PrettyPrint(data)
+		fmt.Println(err)
+		os.Exit(1)
 	}
+	utilities.PrettyPrint(body)
 }

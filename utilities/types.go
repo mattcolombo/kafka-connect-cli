@@ -1,6 +1,7 @@
 package utilities
 
 type Configuration struct {
+	Protocol  string
 	Hostname  []string
 	Operation string
 	TlsEnable bool

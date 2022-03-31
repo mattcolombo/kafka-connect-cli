@@ -3,6 +3,8 @@ package logger
 import (
 	"fmt"
 	"io/ioutil"
+	"net/http"
+	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
@@ -16,10 +18,15 @@ var LoggerGetCmd = &cobra.Command{
 	Long:  "logger get long description",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostname {
-			var loggerListURL string = buildGetAddress(host)
-			fmt.Println("--- Loggers Info for Connect worker at", host, "---")
+			var loggerListURL string = host + "/admin/loggers/" + getPluginClass
+			fmt.Println("--- Getting Log Level for Connect worker at", host, "---")
 			fmt.Println("making a call to", loggerListURL) // control statement print - TOREMOVE
-			doGetCall(loggerListURL)
+			response, err := utilities.DoCallByHost(http.MethodGet, loggerListURL, nil)
+			if err != nil {
+				fmt.Printf("The HTTP request failed with error %s\n", err)
+			} else {
+				printGetResponse(response)
+			}
 		}
 	},
 }
@@ -29,17 +36,13 @@ func init() {
 	LoggerGetCmd.MarkFlagRequired("plugin-class")
 }
 
-func buildGetAddress(host string) string {
-	address := "http://" + host + "/admin/loggers/" + getPluginClass
-	return address
-}
+func printGetResponse(response *http.Response) {
+	defer response.Body.Close()
 
-func doGetCall(address string) {
-	response, err := utilities.ConnectClient.Get(address)
+	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-	} else {
-		data, _ := ioutil.ReadAll(response.Body)
-		utilities.PrettyPrint(data)
+		fmt.Println(err)
+		os.Exit(1)
 	}
+	utilities.PrettyPrint(body)
 }
