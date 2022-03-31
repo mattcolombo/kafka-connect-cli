@@ -3,14 +3,14 @@ package cluster
 import (
 	"fmt"
 	"io/ioutil"
+	"net/http"
+	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
 )
 
 var showPlugins bool
-
-//var client *http.Client = utilities.CreateClient(utilities.ConnectConfiguration)
 
 var ClusterCmd = &cobra.Command{
 	Use:   "cluster",
@@ -24,10 +24,10 @@ var ClusterGet = &cobra.Command{
 	Long:  "long description",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("--- Connect Cluster Info ---")
-		getConnectInfo()
+		getInfo("/")
 		if showPlugins {
 			fmt.Println("--- Installed Plugins ---")
-			getConnectPlugins()
+			getInfo("/connector-plugins")
 		}
 	},
 }
@@ -37,24 +37,22 @@ func init() {
 	ClusterGet.Flags().BoolVarP(&showPlugins, "show-plugins", "", false, "whether the command should show or not the list of plugins currently installed")
 }
 
-func getConnectInfo() {
-	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/"
-	response, err := utilities.ConnectClient.Get(address)
+func getInfo(path string) {
+	response, err := utilities.DoCallByPath(http.MethodGet, path, nil)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 	} else {
-		data, _ := ioutil.ReadAll(response.Body)
-		utilities.PrettyPrint(data)
+		printResponse(response)
 	}
 }
 
-func getConnectPlugins() {
-	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/connector-plugins"
-	response, err := utilities.ConnectClient.Get(address)
+func printResponse(response *http.Response) {
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-	} else {
-		data, _ := ioutil.ReadAll(response.Body)
-		utilities.PrettyPrint(data)
+		fmt.Println(err)
+		os.Exit(1)
 	}
+	utilities.PrettyPrint(body)
 }

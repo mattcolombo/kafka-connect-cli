@@ -3,42 +3,36 @@ package task
 import (
 	"fmt"
 	"io/ioutil"
+	"net/http"
+	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
 )
-
-//var connectorName string
 
 var TaskListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "task list short description",
 	Long:  "task list long description",
 	Run: func(cmd *cobra.Command, args []string) {
-		var taskListURL string = buildListAddress()
-		fmt.Println("making a call to", taskListURL) // control statement print - TOREMOVE
-		doListCall(taskListURL)
+		var path string = "/connectors/" + connectorName + "/tasks"
+		fmt.Println("making a call to", path) // control statement print - TOREMOVE
+		response, err := utilities.DoCallByPath(http.MethodGet, path, nil)
+		if err != nil {
+			fmt.Printf("The HTTP request failed with error %s\n", err)
+		} else {
+			printGetResponse(response)
+		}
 	},
 }
 
-/*
-func init() {
-	TaskListCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to get tasks for (required)")
-	TaskListCmd.MarkFlagRequired("name")
-}
-*/
+func printListResponse(response *http.Response) {
+	defer response.Body.Close()
 
-func buildListAddress() string {
-	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/connectors/" + connectorName + "/tasks"
-	return address
-}
-
-func doListCall(address string) {
-	response, err := utilities.ConnectClient.Get(address)
+	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-	} else {
-		data, _ := ioutil.ReadAll(response.Body)
-		utilities.PrettyPrint(data)
+		fmt.Println(err)
+		os.Exit(1)
 	}
+	utilities.PrettyPrint(body)
 }

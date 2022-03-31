@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
@@ -17,9 +18,14 @@ var TaskRestartCmd = &cobra.Command{
 	Short: "task restart short description",
 	Long:  "task restart long description",
 	Run: func(cmd *cobra.Command, args []string) {
-		var taskRestartURL string = buildRestartAddress()
-		fmt.Println("making a call to", taskRestartURL) // control statement print - TOREMOVE
-		doRestartCall(taskRestartURL)
+		var path string = "/connectors/" + connectorName + "/tasks/" + strconv.Itoa(taskRestartID) + "/restart"
+		fmt.Println("making a call to", path) // control statement print - TOREMOVE
+		response, err := utilities.DoCallByPath(http.MethodPost, path, nil)
+		if err != nil {
+			fmt.Printf("The HTTP request failed with error %s\n", err)
+		} else {
+			printGetResponse(response)
+		}
 	},
 }
 
@@ -28,22 +34,18 @@ func init() {
 	TaskRestartCmd.MarkFlagRequired("id")
 }
 
-func buildRestartAddress() string {
-	address := "http://" + utilities.ConnectConfiguration.Hostname[0] + "/connectors/" + connectorName + "/tasks/" + strconv.Itoa(taskRestartID) + "/restart"
-	return address
-}
+func printRestartResponse(response *http.Response) {
+	defer response.Body.Close()
 
-func doRestartCall(address string) {
-	//r := strings.NewReader("")
-	response, err := utilities.ConnectClient.Post(address, "*/*", nil)
-	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-	} else {
-		if response.StatusCode == 204 {
-			fmt.Println("Connector restarted successfully")
-		}
-		fmt.Println("HTTP Response:", response.StatusCode, http.StatusText(response.StatusCode))
-		data, _ := ioutil.ReadAll(response.Body)
-		utilities.PrettyPrint(data)
+	if response.StatusCode == 204 {
+		fmt.Println("Connector restarted successfully")
 	}
+	fmt.Println("HTTP Response:", response.StatusCode, http.StatusText(response.StatusCode))
+	// TODO the below can probably be removed since I don't think this call returns an actual body. To check.
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	utilities.PrettyPrint(body)
 }
