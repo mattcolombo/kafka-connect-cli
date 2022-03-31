@@ -2,9 +2,7 @@ package task
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
 	"strconv"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
@@ -24,7 +22,7 @@ var TaskRestartCmd = &cobra.Command{
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 		} else {
-			printGetResponse(response)
+			printRestartResponse(response)
 		}
 	},
 }
@@ -40,12 +38,5 @@ func printRestartResponse(response *http.Response) {
 	if response.StatusCode == 204 {
 		fmt.Println("Connector restarted successfully")
 	}
-	fmt.Println("HTTP Response:", response.StatusCode, http.StatusText(response.StatusCode))
-	// TODO the below can probably be removed since I don't think this call returns an actual body. To check.
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	utilities.PrettyPrint(body)
+	fmt.Println("Connect responds:", response.StatusCode, http.StatusText(response.StatusCode))
 }
