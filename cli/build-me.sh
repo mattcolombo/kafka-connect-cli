@@ -2,10 +2,10 @@
 
 export GOARCH="amd64"
 export GOOS="linux"
-go build ..
+go build
 
 export GOOS="windows"
-go build ..
+go build
 
 unset GOOS
 unset GOARCH
