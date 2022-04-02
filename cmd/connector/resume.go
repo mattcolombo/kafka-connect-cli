@@ -21,7 +21,8 @@ var ConnectorResumeCmd = &cobra.Command{
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 		} else {
-			utilities.PrintResponseJson(response)
+			message := fmt.Sprintf("Connector %s was resumed successfully", connectorName)
+			utilities.PrintEmptyBodyResponse(response, 202, message)
 		}
 	},
 }

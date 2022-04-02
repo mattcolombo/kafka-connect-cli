@@ -22,7 +22,8 @@ var TaskRestartCmd = &cobra.Command{
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 		} else {
-			printRestartResponse(response)
+			message := fmt.Sprintf("Task %d for connector %s was resumed successfully", taskRestartID, connectorName)
+			utilities.PrintEmptyBodyResponse(response, 204, message)
 		}
 	},
 }
@@ -30,15 +31,4 @@ var TaskRestartCmd = &cobra.Command{
 func init() {
 	TaskRestartCmd.Flags().IntVarP(&taskRestartID, "id", "", 0, "ID of the task to restart (required)")
 	TaskRestartCmd.MarkFlagRequired("id")
-}
-
-// TODO refactor this in a common printer function since many connectors will require it to be implemented
-
-func printRestartResponse(response *http.Response) {
-	defer response.Body.Close()
-
-	if response.StatusCode == 204 {
-		fmt.Println("Connector restarted successfully")
-	}
-	fmt.Println("Connect responds:", response.StatusCode, http.StatusText(response.StatusCode))
 }

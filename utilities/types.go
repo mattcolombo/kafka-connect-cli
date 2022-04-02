@@ -9,3 +9,8 @@ type Configuration struct {
 	CertPath  string
 	KeyPath   string
 }
+
+type JsonError struct {
+	Code    int    `json:"error_code"`
+	Message string `json:"message"`
+}

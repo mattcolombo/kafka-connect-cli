@@ -21,7 +21,8 @@ var ConnectorDeleteCmd = &cobra.Command{
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 		} else {
-			utilities.PrintResponseJson(response)
+			message := fmt.Sprintf("Connector %s was deleted successfully", connectorName)
+			utilities.PrintEmptyBodyResponse(response, 204, message)
 		}
 	},
 }
