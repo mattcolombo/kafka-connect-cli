@@ -6,7 +6,9 @@ import (
 	"net/http"
 )
 
-var address string = ConnectConfiguration.Protocol + "://" + ConnectConfiguration.Hostname[0]
+// defining the client here means that the client will be created when the module is loaded and will be used throughtout without being recreated for every call
+var client *http.Client = createClient()
+var address string = ConnectConfiguration.Protocol + "://" + ConnectConfiguration.Hostnames[0]
 
 func DoCallByHost(method, hostPath string, body io.Reader) (*http.Response, error) {
 
@@ -21,8 +23,6 @@ func DoCallByPath(method, path string, body io.Reader) (*http.Response, error) {
 }
 
 func doCall(method, URL string, body io.Reader) (*http.Response, error) {
-
-	client := createClient()
 
 	request, err := http.NewRequest(method, URL, body)
 	if err != nil {

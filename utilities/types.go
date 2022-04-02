@@ -1,13 +1,35 @@
 package utilities
 
-type Configuration struct {
-	Protocol  string
-	Hostname  []string
-	Operation string
-	TlsEnable bool
-	CaPath    string
-	CertPath  string
-	KeyPath   string
+type ConfigurationYaml struct {
+	Hostnames  []string   `yaml:"hostnames"`
+	Protocol   string     `yaml:"protocol"`
+	Tls        Tls        `yaml:"tls"`
+	BasicAuth  BasicAuth  `yaml:"basicauth"`
+	TokenAuth  TokenAuth  `yaml:"tokenauth"`
+	ApiKeyAuth ApiKeyAuth `yaml:"apikeyauth"`
+}
+
+type Tls struct {
+	Enabled  bool   `yaml:"enabled"`
+	CaPath   string `yaml:"capath"`
+	Certpath string `yaml:"certpath"`
+	Keypath  string `yaml:"keypath"`
+}
+
+type BasicAuth struct {
+	Enabled bool   `yaml:"enabled"`
+	Userref string `yaml:"userref"`
+}
+
+type TokenAuth struct {
+	Enabled  bool   `yaml:"enabled"`
+	Tokenref string `yaml:"tokenref"`
+}
+
+type ApiKeyAuth struct {
+	Enabled bool   `yaml:"enabled"`
+	Header  string `yaml:"header"`
+	Keyref  string `yaml:"keyref"`
 }
 
 type JsonError struct {

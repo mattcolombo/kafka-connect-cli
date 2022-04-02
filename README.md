@@ -4,9 +4,9 @@ A comprehensive command line tool to manage a Kafka Connect installation, invoke
 
 ## Configuration requirements
 
-The hosts where Connect is located at, along with some other options and information, need to be stored in a configuration file (in JSON format). Since the configuration file is loaded as soon as the CLI is called and before any flags and commands are parsed, the location of such configuration file need to be stored in an environment variable named `CONNECTCFG`. If such environment variable is not set, the CLI will look in a default location set to `./connect-config.json`. If such file is not present ant the environment variable is not set, an error will be thrown.
+The hosts where Connect is located at, along with some other options and information, need to be stored in a configuration file (in YAML format). Since the configuration file is loaded as soon as the CLI is called and before any flags and commands are parsed, the location of such configuration file need to be stored in an environment variable named `CONNECTCFG`. If such environment variable is not set, the CLI will look in a default location set to `./connect-config.yaml`. If such file is not present ant the environment variable is not set, an error will be thrown.
 
-A sample configuration file can be found [here](./connect-config.json.tmpl). Simply make a copy and rename as `connect-config.json`, fill in the required information, set the environment variable to the path to this file (the fully qualified path is best as it will allow to run the CLI from any location in the system) and you are good to go.
+A sample configuration file can be found [here](./connect-config.yaml.tmpl). Simply make a copy and rename as `connect-config.yaml`, fill in the required information, set the environment variable to the path to this file (the fully qualified path is best as it will allow to run the CLI from any location in the system) and you are good to go.
 
 ## Top level commands and resources
 

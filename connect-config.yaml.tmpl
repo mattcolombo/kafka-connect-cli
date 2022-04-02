@@ -1,0 +1,18 @@
+hostnames:
+    - <connect-host>:<port>
+protocol: http
+tls:
+    enabled: <true|false>
+    capath: </path/to/ca.crt>
+    certpath: </path/to/host/certificate.crt>
+    keypath: </path/to/host/key.pem>
+basicauth:
+    enabled: <true|false>
+    authref: <ENV_VAR>
+tokenauth:
+    enabled: <true|false>
+    authref: <ENV_VAR>
+apikeyauth:
+    enabled: <true|false>
+    header: <header-name>
+    authref: <ENV_VAR>

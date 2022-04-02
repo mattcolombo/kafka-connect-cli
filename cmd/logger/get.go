@@ -15,7 +15,7 @@ var LoggerGetCmd = &cobra.Command{
 	Short: "logger get short description",
 	Long:  "logger get long description",
 	Run: func(cmd *cobra.Command, args []string) {
-		for _, host := range utilities.ConnectConfiguration.Hostname {
+		for _, host := range utilities.ConnectConfiguration.Hostnames {
 			var loggerListURL string = host + "/admin/loggers/" + getPluginClass
 			fmt.Println("--- Getting Log Level for Connect worker at", host, "---")
 			fmt.Println("making a call to", loggerListURL) // control statement print - TOREMOVE

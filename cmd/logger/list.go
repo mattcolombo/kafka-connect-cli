@@ -13,7 +13,7 @@ var LoggerListCmd = &cobra.Command{
 	Short: "logger list short description",
 	Long:  "logger list long description",
 	Run: func(cmd *cobra.Command, args []string) {
-		for _, host := range utilities.ConnectConfiguration.Hostname {
+		for _, host := range utilities.ConnectConfiguration.Hostnames {
 			var loggerListURL string = host + "/admin/loggers"
 			fmt.Println("--- Loggers Info for Connect worker at", host, "---")
 			fmt.Println("making a call to", loggerListURL) // control statement print - TOREMOVE
