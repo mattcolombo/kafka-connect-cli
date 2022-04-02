@@ -8,6 +8,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// TODO add capability to print outcome that is not JSON (see task restart); Probably this needs to become a common printer function
+
 var ConnectorPauseCmd = &cobra.Command{
 	Use:   "pause",
 	Short: "short description",
@@ -25,6 +27,6 @@ var ConnectorPauseCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorGetCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to show (required)")
-	ConnectorGetCmd.MarkFlagRequired("name")
+	ConnectorPauseCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to show (required)")
+	ConnectorPauseCmd.MarkFlagRequired("name")
 }

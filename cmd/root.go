@@ -15,7 +15,7 @@ import (
 //var configPath string
 
 var rootCmd = &cobra.Command{
-	Use:   "kconnect-ctl",
+	Use:   "kconnect-cli",
 	Short: "short description",
 	Long:  "long description - remember to add that the file needs to be added as an Environment variable",
 }

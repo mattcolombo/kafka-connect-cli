@@ -32,6 +32,8 @@ func init() {
 	TaskRestartCmd.MarkFlagRequired("id")
 }
 
+// TODO refactor this in a common printer function since many connectors will require it to be implemented
+
 func printRestartResponse(response *http.Response) {
 	defer response.Body.Close()
 
