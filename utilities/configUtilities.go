@@ -7,6 +7,10 @@ import (
 	"os"
 )
 
+// TODO find out how this can be done using yaml instead and implement it
+// architectural decision: use one yaml config file per environment, and that needs to be set in the default location or by ENV variable
+// add in the documentation aliases for Linux to load different environments
+
 var ConnectConfiguration Configuration = ImportConfig()
 var defaultLocation string = "./connect-config.json"
 
