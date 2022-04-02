@@ -8,6 +8,8 @@ The hosts where Connect is located at, along with some other options and informa
 
 A sample configuration file can be found [here](./connect-config.yaml.tmpl). Simply make a copy and rename as `connect-config.yaml`, fill in the required information, set the environment variable to the path to this file (the fully qualified path is best as it will allow to run the CLI from any location in the system) and you are good to go.
 
+:!: In the `hostnames` field within the configuration file, it's very important to list all the hosts that make up the Connect cluster we wish to manage. While for the vast majority of API call we could use any of the hosts (and in fact here we will use only the first in the list), specifically setting and checking loggers and log levels need to be done in each of the hosts independently. For this reason the `logger` commands will loop over all the hosts. If a host is missing from the list log levels will not be set dynamically for that host.
+
 ## Top level commands and resources
 
 The main commands to manage a connect cluster resource are as follow:
