@@ -2,9 +2,7 @@ package cluster
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
@@ -42,17 +40,6 @@ func getInfo(path string) {
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 	} else {
-		printResponse(response)
+		utilities.PrintResponseJson(response)
 	}
-}
-
-func printResponse(response *http.Response) {
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	utilities.PrettyPrint(body)
 }

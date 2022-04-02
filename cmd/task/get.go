@@ -2,9 +2,7 @@ package task
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
 	"strconv"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
@@ -24,7 +22,7 @@ var TaskGetCmd = &cobra.Command{
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 		} else {
-			printGetResponse(response)
+			utilities.PrintResponseJson(response)
 		}
 	},
 }
@@ -32,15 +30,4 @@ var TaskGetCmd = &cobra.Command{
 func init() {
 	TaskGetCmd.Flags().IntVarP(&taskGetID, "id", "", 0, "ID of the task to check (required)")
 	TaskGetCmd.MarkFlagRequired("id")
-}
-
-func printGetResponse(response *http.Response) {
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	utilities.PrettyPrint(body)
 }

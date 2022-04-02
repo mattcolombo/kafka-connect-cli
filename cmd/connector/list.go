@@ -2,9 +2,7 @@ package connector
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
@@ -23,7 +21,7 @@ var ConnectorListCmd = &cobra.Command{
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 		} else {
-			printListResponse(response)
+			utilities.PrintResponseJson(response)
 		}
 	},
 }
@@ -31,17 +29,6 @@ var ConnectorListCmd = &cobra.Command{
 func init() {
 	ConnectorListCmd.Flags().BoolVarP(&showStatus, "show-status", "", false, "whether the command should show or not the status for each connector")
 	ConnectorListCmd.Flags().BoolVarP(&showInfo, "show-info", "", false, "whether the command should expand or not on extra info for each connector")
-}
-
-func printListResponse(response *http.Response) {
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	utilities.PrettyPrint(body)
 }
 
 func buildPath() string {

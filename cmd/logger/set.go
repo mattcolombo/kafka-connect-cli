@@ -4,9 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
@@ -27,7 +25,7 @@ var LoggerSetCmd = &cobra.Command{
 			if err != nil {
 				fmt.Printf("The HTTP request failed with error %s\n", err)
 			} else {
-				printSetResponse(response)
+				utilities.PrintResponseJson(response)
 			}
 		}
 	},
@@ -46,15 +44,4 @@ func buildSetPayload() []byte {
 		fmt.Printf("JSON build failed with error %s\n", err)
 	}
 	return payload
-}
-
-func printSetResponse(response *http.Response) {
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	utilities.PrettyPrint(body)
 }
