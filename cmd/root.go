@@ -15,7 +15,7 @@ import (
 //var configPath string
 
 var rootCmd = &cobra.Command{
-	Use:   "kafka-connect-cli",
+	Use:   "kconnect-ctl",
 	Short: "short description",
 	Long:  "long description - remember to add that the file needs to be added as an Environment variable",
 }

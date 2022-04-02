@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var version string = "kafka-connect-cli : {Major: 1, Minor: 0, Full version: 1.0.0}"
+var version string = "kconnect-ctl : {Major: 0, Minor: 0, Full version: 0.0.1}"
 
 var VersionCmd = &cobra.Command{
 	Use:   "version",
