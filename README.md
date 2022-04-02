@@ -24,3 +24,9 @@ The main commands to manage a connect cluster resource are as follow:
 ## Further reading
 
 A great guide on how the Connect Rest API works in general, and all the endpoints it offers can be found for example in the [Confluent official documentation](https://docs.confluent.io/platform/current/connect/references/restapi.html).
+
+## TODO
+
+* Check if the configuration file can be passed as a CM in the AKS implementation (once we get there)
+* Add documentation folder/file for the Installation
+* Add a documentation file for the configuration instructions (including the aliases for Linux and maybe Windows if I can figure them out) and reduce on the mian README page
