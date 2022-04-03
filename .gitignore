@@ -5,9 +5,6 @@
 *.so
 *.dylib
 
-# but include built assets
-!./installation/build-output/*
-
 # Test binary, built with `go test -c`
 *.test
 
@@ -24,3 +21,8 @@ connector_test*
 
 # todo list does not need to be published
 TODO.txt
+
+# but include built assets (for later)
+#!installation/*
+# for now we exclude all the build assets
+installation/build-output/*
