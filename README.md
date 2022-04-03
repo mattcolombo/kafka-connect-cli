@@ -10,6 +10,8 @@ A sample configuration file can be found [here](./connect-config.yaml.tmpl). Sim
 
 :warning: In the `hostnames` field within the configuration file, it's very important to list all the hosts that make up the Connect cluster we wish to manage. While for the vast majority of API call we could use any of the hosts (and in fact here we will use only the first in the list), specifically setting and checking loggers and log levels need to be done in each of the hosts independently. For this reason the `logger` commands will loop over all the hosts. If a host is missing from the list log levels will not be set dynamically for that host.
 
+More info [here](docs/CONFIGURATION.md).
+
 ## Top level commands and resources
 
 The main commands to manage a connect cluster resource are as follow:
@@ -28,5 +30,5 @@ A great guide on how the Connect Rest API works in general, and all the endpoint
 ## TODO
 
 * Check if the configuration file can be passed as a CM in the AKS implementation (once we get there)
-* Add documentation folder/file for the Installation
+* Add documentation folder/file for the Installation; [done here](installation/INSTALLATION-GUIDE.md)
 * Add a documentation file for the configuration instructions (including the aliases for Linux and maybe Windows if I can figure them out) and reduce on the mian README page
