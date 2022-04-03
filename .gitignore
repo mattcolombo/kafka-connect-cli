@@ -17,6 +17,7 @@
 # Configuration file temporarily not 
 connect-config.json
 connect-config.yaml
+connector_test*
 
 # todo list does not need to be published
 TODO.txt
