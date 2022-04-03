@@ -15,7 +15,7 @@ var ConnectorListCmd = &cobra.Command{
 	Short: "short description",
 	Long:  "long description",
 	Run: func(cmd *cobra.Command, args []string) {
-		var path string = buildPath()
+		var path string = buildListPath()
 		fmt.Println("making a call to", path) // control statement print - TOREMOVE
 		response, err := utilities.DoCallByPath(http.MethodGet, path, nil)
 		if err != nil {
@@ -31,7 +31,7 @@ func init() {
 	ConnectorListCmd.Flags().BoolVarP(&showInfo, "show-info", "", false, "whether the command should expand or not on extra info for each connector")
 }
 
-func buildPath() string {
+func buildListPath() string {
 	path := "/connectors"
 	if showStatus && showInfo {
 		path += "?expand=status&expand=info"

@@ -33,7 +33,7 @@ func init() {
 	ConnectorCmd.AddCommand(ConnectorDeleteCmd)
 	ConnectorCmd.AddCommand(ConnectorPauseCmd)
 	ConnectorCmd.AddCommand(ConnectorResumeCmd)
-	//ConnectorCmd.AddCommand(ConnectorRestartCmd)
+	ConnectorCmd.AddCommand(ConnectorRestartCmd)
 }
 
 /*
