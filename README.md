@@ -29,6 +29,13 @@ A great guide on how the Connect Rest API works in general, and all the endpoint
 
 ## TODO
 
+* Complete all documentation pages for CONNECTOR command
+* Complete the documentation for CONFIGURATION (see below)
+* Fill in all the helper descriptions
+* Investigate using docker to build the executable and save them in the local folder
+* Create/update correctly the base docker image and push the CLI to DockerHub
+* Investigate creating aliases in the docker image and see if they can be added as well as the configuration files (in the image they could be added to /connect-config/)
+
 * Check if the configuration file can be passed as a CM in the AKS implementation (once we get there)
 * Add documentation folder/file for the Installation; [done here](installation/INSTALLATION-GUIDE.md)
-* Add a documentation file for the configuration instructions (including the aliases for Linux and maybe Windows if I can figure them out) and reduce on the mian README page
+* Add a documentation file for the configuration instructions (including the aliases for Linux and maybe Windows if I can figure them out) and reduce on the main README page. Page prepared [here](docs/CONFIGURATION.md) but needs to be filled.
