@@ -28,6 +28,6 @@ var ConnectorPauseCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorPauseCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to show (required)")
+	ConnectorPauseCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to pause (required)")
 	ConnectorPauseCmd.MarkFlagRequired("name")
 }

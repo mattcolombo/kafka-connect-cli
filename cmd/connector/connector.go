@@ -26,10 +26,10 @@ var ConnectorCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorCmd.AddCommand(ConnectorCreateCmd)
-	ConnectorCmd.AddCommand(ConnectorUpdateCmd)
 	ConnectorCmd.AddCommand(ConnectorListCmd)
 	ConnectorCmd.AddCommand(ConnectorGetCmd)
+	ConnectorCmd.AddCommand(ConnectorCreateCmd)
+	ConnectorCmd.AddCommand(ConnectorUpdateCmd)
 	ConnectorCmd.AddCommand(ConnectorDeleteCmd)
 	ConnectorCmd.AddCommand(ConnectorPauseCmd)
 	ConnectorCmd.AddCommand(ConnectorResumeCmd)

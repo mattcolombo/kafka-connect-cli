@@ -30,7 +30,7 @@ var ConnectorRestartCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorRestartCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to show (required)")
+	ConnectorRestartCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to restart (required)")
 	ConnectorRestartCmd.MarkFlagRequired("name")
 	ConnectorRestartCmd.Flags().BoolVarP(&includeTasks, "include-tasks", "", false, "whether to restart also the connector tasks")
 	ConnectorRestartCmd.Flags().BoolVarP(&onlyFailed, "failed-only", "", false, "whether to restart only the failed instances")

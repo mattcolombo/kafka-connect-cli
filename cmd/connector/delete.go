@@ -28,6 +28,6 @@ var ConnectorDeleteCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorDeleteCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to show (required)")
+	ConnectorDeleteCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to delete (required)")
 	ConnectorDeleteCmd.MarkFlagRequired("name")
 }

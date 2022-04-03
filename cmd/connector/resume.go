@@ -28,6 +28,6 @@ var ConnectorResumeCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorResumeCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to show (required)")
+	ConnectorResumeCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to resume (required)")
 	ConnectorResumeCmd.MarkFlagRequired("name")
 }
