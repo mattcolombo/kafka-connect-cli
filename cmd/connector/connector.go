@@ -16,6 +16,7 @@ var connectorName, connectorPath string
 
 // structure used to extract data from the configuration file for the connector (the config part for update and the connector class for validation)
 type connectConfig struct {
+	Name   string            `json:"name"`
 	Config map[string]string `json:"config"`
 }
 
