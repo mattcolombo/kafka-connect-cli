@@ -5,6 +5,9 @@
 *.so
 *.dylib
 
+# but include built assets
+!./installation/build-output/*
+
 # Test binary, built with `go test -c`
 *.test
 

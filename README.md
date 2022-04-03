@@ -31,6 +31,7 @@ A great guide on how the Connect Rest API works in general, and all the endpoint
 
 * Complete all documentation pages for CONNECTOR command
 * Complete the documentation for CONFIGURATION (see below)
+* Comment properly the whole code
 * Fill in all the helper descriptions
 * Investigate using docker to build the executable and save them in the local folder
 * Create/update correctly the base docker image and push the CLI to DockerHub
