@@ -13,8 +13,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var connectorPath string
-
 var ConnectorCreateCmd = &cobra.Command{
 	Use:   "create",
 	Short: "short description",
@@ -52,3 +50,10 @@ func buildCreateRequestBody() io.Reader {
 
 	return bytes.NewBuffer(file)
 }
+
+/*
+	var jsonConfig connectConfig
+	json.Unmarshal(file, &jsonConfig)
+
+	fmt.Println(jsonConfig.Config["connector.class"])
+*/
