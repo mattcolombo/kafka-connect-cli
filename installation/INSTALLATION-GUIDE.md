@@ -9,3 +9,7 @@ docker build (--build-arg version=0.0.1) --target artifact --output type=local,d
 ```
 docker build (--build-arg version=0.0.1) -t local/kconnect-cli:0.0.1 .
 ```
+
+```
+docker run --rm -d local/kconnect-cli:0.0.1
+```

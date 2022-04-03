@@ -33,7 +33,6 @@ A great guide on how the Connect Rest API works in general, and all the endpoint
 * Complete the documentation for CONFIGURATION (see below)
 * Comment properly the whole code
 * Fill in all the helper descriptions
-* Investigate using docker to build the executable and save them in the local folder
 * Create/update correctly the base docker image and push the CLI to DockerHub
 * Investigate creating aliases in the docker image and see if they can be added as well as the configuration files (in the image they could be added to /connect-config/)
 

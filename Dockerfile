@@ -40,4 +40,6 @@ CMD ["/background/stay_alive.sh"]
 WORKDIR /usr/cli
 RUN echo $CLIVERSION
 COPY --from=builder /builder/output/kconnect-cli_$CLIVERSION /usr/cli/kconnect-cli
+# adding the template configuration file for convenience (it can be modified on-site, or a new image can be built from this one with the correct ones in it)
+COPY ./connect-config.yaml.tmpl /usr/cli/connect-config.yaml
 ENV PATH="/usr/cli:${PATH}"
