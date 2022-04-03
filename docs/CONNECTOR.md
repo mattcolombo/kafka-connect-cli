@@ -15,11 +15,11 @@ The above flags can be used at the same time, in which case both the status and 
 
 ## get
 
-`kconnect-cli connector get`: requires flag `--name` flag (shorthand `-n`) for the connector name, and allows optional flags `--status` and `--config`. Provides information on the connector specified by the `--name` flag, together with the current configuration and status of the connector and tasks. Use the `--config` optional flag to show _only_ the configuration and the `--status` optional flag to show _only_ the status of the connector and related tasks. 
+`kconnect-cli connector get`: requires flag `--name` flag (shorthand `-n`) for the connector name, and allows optional flags `--status-only` (shorthand `-s`) and `--config-only` (shorthand `-c`). Provides information on the connector specified by the `--name` flag, together with the current configuration and status of the connector and tasks. Use the `--config-only` optional flag to show _only_ the configuration and the `--status-only` optional flag to show _only_ the status of the connector and related tasks. 
 
 :warning: As already stated in the previous section, showing the configuration will expose in clear text any confidential information contained in the connector configuration (including credentials) unless they are secured in some other way (see [this page](https://docs.confluent.io/platform/current/connect/security.html#externalizing-secrets) for possible solutions to this issue; however securing Connect is out of the scope of this project so no more will be discussed here).
 
-:warning: The `--config` and `--status` flags are mutually exclusive, therefore only one can be used at the same time.
+:warning: The `--config-only` and `--status-only` flags are mutually exclusive, therefore only one can be used at the same time.
 
 ## pause
 
