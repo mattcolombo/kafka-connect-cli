@@ -1,6 +1,6 @@
 # kafka-connect-cli
 
-A comprehensive command line tool to manage a Kafka Connect installation, invoked by using `kconnect-cli`. The CLI leverages the Connect Rest API, effectively creating a client under the cover and issuing requests to said API. It will allow to work with variously configured Connect clusters (including using mTLS, basic and token/API key based authentication). 
+A comprehensive command line tool to manage a Kafka Connect installation, invoked by using `kconnect-cli`. The CLI leverages the Connect API, effectively creating a client under the cover and issuing requests to said API. It will allow to work with variously configured Connect clusters (including using mTLS, basic and token/API key based authentication). 
 
 ## Configuration requirements
 
@@ -25,7 +25,7 @@ The main commands to manage a connect cluster resource are as follow:
 
 ## Further reading
 
-A great guide on how the Connect Rest API works in general, and all the endpoints it offers can be found for example in the [Confluent official documentation](https://docs.confluent.io/platform/current/connect/references/restapi.html).
+A great guide on how the Connect API works in general, and all the endpoints it offers can be found for example in the [Confluent official documentation](https://docs.confluent.io/platform/current/connect/references/restapi.html).
 
 ## TODO
 
