@@ -12,14 +12,14 @@ var showPlugins bool
 
 var ClusterCmd = &cobra.Command{
 	Use:   "cluster",
-	Short: "short description",
-	Long:  "long description",
+	Short: "Gather information on a Connect cluster",
+	Long:  "Allows to gather information on a Connect cluster, and if required on the plugins installed",
 }
 
 var ClusterGet = &cobra.Command{
 	Use:   "get",
-	Short: "short description",
-	Long:  "long description",
+	Short: "Show info about the cluster",
+	Long:  "Shows the information about the cluster, and if required produces a list of the installed plugins",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("--- Connect Cluster Info ---")
 		getInfo("/")
