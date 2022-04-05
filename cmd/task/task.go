@@ -8,8 +8,8 @@ var connectorName string
 
 var TaskCmd = &cobra.Command{
 	Use:   "task",
-	Short: "task short description",
-	Long:  "task long description",
+	Short: "Manage connector tasks",
+	Long:  "Allows to manage connector tasks",
 }
 
 func init() {
