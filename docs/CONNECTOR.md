@@ -2,6 +2,8 @@
 
 Allows to list, gather information and manage connectors.
 
+All the commands that require a file path as input, require a connector configuration file in JSON format. A sample connector configuration file as required in all these commands can be found [here](../samples/connector_sample-config.json).
+
 ## list
 
 `kconnect-cli connector list`: provides a list of the connectors currently present in the Connect cluster. Uses the `GET /connectors` endpoint. Allows the following optional flags:
@@ -24,6 +26,8 @@ The above flags can be used at the same time, in which case both the status and 
 ## create
 
 `kconnect-cli connector create`: requires flag `--config-path` flag for the path to the connector configuration file in JSON format; allows optional boolean flag `--validate`. Creates a new connector using the configuration file selected. If the `--validate` flag is added, the connector is _NOT_ created, but instead the configuration is validated against the connector plugin class. Uses the `POST /connectors` endpoint for the creation, and `PUT /connector-plugins/(string:plugin_type)/config/validate` endpoint for the validation.
+
+:warning: The validation of the connector configuration will throw at least one error due to the name missing in the configuration. This is because this endpoint (and exclusively this one) actually requires the connector name to be part of the configuration part of the JSON, rather than separate as requested for every other command. This is not an issue, as long as the user is aware that the `missing name` error is always going to be thrown. If this is the only error, the connector can be uploaded without failures.
 
 ## update
 
