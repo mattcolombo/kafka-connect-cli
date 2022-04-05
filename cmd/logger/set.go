@@ -14,8 +14,8 @@ var setPluginClass, setLevel string
 
 var LoggerSetCmd = &cobra.Command{
 	Use:   "set",
-	Short: "logger set short description",
-	Long:  "logger set long description",
+	Short: "Sets the log level set for a logger",
+	Long:  "Allows to set the level set for a specific logger or connector plugin; allowed log levels are Java ones",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
 			var loggerListURL string = host + "/admin/loggers/" + setPluginClass

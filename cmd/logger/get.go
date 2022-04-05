@@ -12,8 +12,8 @@ var getPluginClass string
 
 var LoggerGetCmd = &cobra.Command{
 	Use:   "get",
-	Short: "logger get short description",
-	Long:  "logger get long description",
+	Short: "Shows the log level set for a logger",
+	Long:  "Allows to check the level set for a specific logger or connector plugin",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
 			var loggerListURL string = host + "/admin/loggers/" + getPluginClass
