@@ -4,7 +4,7 @@ Allows to list, gather information and manage connectors.
 
 ## list
 
-`kconnect-cli connector list`: provides a list of the connectors currently present in the Connect cluster. Uses the `GET /connectors` Rest endpoint. Allows the following optional flags:
+`kconnect-cli connector list`: provides a list of the connectors currently present in the Connect cluster. Uses the `GET /connectors` endpoint. Allows the following optional flags:
 
 * `--show-info`: expands the configuration for each connector (using the `expand=info` query parameter). 
 * `--show-status` expands the status of each connector and its tasks (using the `expand=status` query parameter)
@@ -21,14 +21,28 @@ The above flags can be used at the same time, in which case both the status and 
 
 :warning: The `--config-only` and `--status-only` flags are mutually exclusive, therefore only one can be used at the same time.
 
-## pause
+## create
 
-`kconnect-cli connector pause`: requires flag `--name` flag (shorthand `-n`) for the connector name. Brings the connector in PAUSED state, where processing is suspended. Notice that by using this operation the tasks continue to exist, though the processing will be interrupted. Uses the `PUT /connectors/(string:name)/pause` Rest endpoint.
+`kconnect-cli connector create`: requires flag `--config-path` flag for the path to the connector configuration file in JSON format; allows optional boolean flag `--validate`. Creates a new connector using the configuration file selected. If the `--validate` flag is added, the connector is _NOT_ created, but instead the configuration is validated against the connector plugin class. Uses the `POST /connectors` endpoint for the creation, and `PUT /connector-plugins/(string:plugin_type)/config/validate` endpoint for the validation.
 
-## resume
+## update
 
-`kconnect-cli connector resume`: requires flag `--name` flag (shorthand `-n`) for the connector name. Resumes a previously paused task and allow message processing to continue. Notice that as stated above pause will not remove the task, only suspend it, so this will not restart a task, only resume the processing. If a task is in FAILED state, it will continue to be after a pause and resume. To actually restart a task (or a connector) use the `task restart` or `connector restart` actions. Uses the `PUT /connectors/(string:name)/resume` Rest endpoint.
+`kconnect-cli connector create`: requires flag `--name` flag (shorthand `-n`) for the connector name and `--config-path` flag for the path to the connector configuration file in JSON format. Updates the configuration of the connector selected by the file. Before doing so, checks that the name specified with the `--name` flag matches the connector name specified in the configuration file. If the names don't match, throws an error. Uses the `PUT /connectors/(string:name)/config` endpoint.
 
 ## delete
 
-`kconnect-cli connector delete`: requires flag `--name` flag (shorthand `-n`) for the connector name. Deletes the connector specified. Uses the `DELETE /connectors/(string:name)` Rest endpoint.
+`kconnect-cli connector delete`: requires flag `--name` flag (shorthand `-n`) for the connector name. Deletes the connector specified. Uses the `DELETE /connectors/(string:name)` endpoint.
+
+## pause
+
+`kconnect-cli connector pause`: requires flag `--name` flag (shorthand `-n`) for the connector name. Brings the connector in PAUSED state, where processing is suspended. Notice that by using this operation the tasks continue to exist, though the processing will be interrupted. Uses the `PUT /connectors/(string:name)/pause` endpoint.
+
+## resume
+
+`kconnect-cli connector resume`: requires flag `--name` flag (shorthand `-n`) for the connector name. Resumes a previously paused task and allow message processing to continue. Notice that as stated above pause will not remove the task, only suspend it, so this will not restart a task, only resume the processing. If a task is in FAILED state, it will continue to be after a pause and resume. To actually restart a task (or a connector) use the `task restart` or `connector restart` actions. Uses the `PUT /connectors/(string:name)/resume` endpoint.
+
+# restart
+
+`kconnect-cli connector resume`: requires flag `--name` flag (shorthand `-n`) for the connector name; allows boolean flags `--include-tasks` and `--failed-only`. In the vanilla version, restarts the connector specified by `--name`. Note that this only restarts the connector process itself, it does _NOT_ restart any of the tasks parrt of such connector. Tasks would need to be restarted using the `task restart` command. However, adding the `--include-tasks` will restart the connector and all the related tasks. Using the `--failed-only` flag will only restart the tasks (and the connector itself) in the case that the state is FAILED. Uses the `PUT /connectors/(string:name)/restart` endpoint; adds the `includeTasks=true` and `onlyFailed=true` if the relative flags are selected.
+
+:warning: the query parameters `includeTasks=true` and `onlyFailed=true` were only added to Kafka Connect as part of [KIP-745](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=181308623). That is, they were added quite recently, and therefore may not work on older versions of Connect. If such is the case, adding the flags will not cause the command to fail, but will not make any difference. On older versions of Connect the flags are redundant and the behaviour of this command will be the same with or without flags.

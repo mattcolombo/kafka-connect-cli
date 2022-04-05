@@ -65,7 +65,7 @@ func extractConnectorConfig(file []byte) []byte {
 		Update endpoint expects to receive only the configuration, not the full JSON structure of the configuration file.
 		In order to build that (since we don't know the specific structure of the connector being updated) we first unmarshal it into
 		a structure and extract the "config" structure. This is extracted as a map, and then this map is Marshaled again as JSON to be
-		able to pass it to the PUT Rest endpoint
+		able to pass it to the PUT endpoint
 
 		NOTE: the structure is shared by different commands so is defined in connector.go in the common variables section
 	*/
