@@ -4,7 +4,7 @@ A comprehensive command line tool to manage a Kafka Connect installation, invoke
 
 ## Configuration requirements
 
-The hosts where Connect is located at, along with some other options and information, need to be stored in a configuration file (in YAML format). Since the configuration file is loaded as soon as the CLI is called and before any flags and commands are parsed, the location of such configuration file need to be stored in an environment variable named `CONNECTCFG`. If such environment variable is not set, the CLI will look in a default location set to `./connect-config.yaml`. If such file is not present ant the environment variable is not set, an error will be thrown.
+The hosts where Connect is located at, along with some other options and information, need to be stored in a configuration file (in YAML format). Since the configuration file is loaded as soon as the CLI is called and before any flags and commands are parsed, the location of such configuration file need to be stored in an environment variable named `CONNECTCFG`. If such environment variable is not set, the CLI will look for a file called `./connect-config.yaml` in the current folder. **NOTE** the current folder refers to the folder where the user is located running the commands, not to the folder where the CLI executable is located (in case such location being added to the PATH, and used from elsewhere). If such file is not present ant the environment variable is not set, an error will be thrown.
 
 A sample configuration file can be found [here](./samples/connect-config.yaml.tmpl). Simply make a copy, rename it as `connect-config.yaml`, fill in the required information, set the environment variable to the path to this file (the fully qualified path is best as it will allow to run the CLI from any location in the system) and you are good to go.
 
@@ -29,7 +29,6 @@ A great guide on how the Connect API works in general, and all the endpoints it 
 
 ## TODO
 
-* Complete all documentation pages for CONNECTOR command
 * Complete the documentation for CONFIGURATION (see below)
 * Comment properly the whole code
 * Fill in all the helper descriptions
