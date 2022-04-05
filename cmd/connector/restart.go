@@ -23,8 +23,6 @@ var ConnectorRestartCmd = &cobra.Command{
 		} else {
 			message := fmt.Sprintf("Connector %s was restarted successfully", connectorName)
 			utilities.PrintEmptyBodyResponse(response, 204, message)
-			//fmt.Println(response.Status)
-			//utilities.PrintResponseJson(response)
 		}
 	},
 }
