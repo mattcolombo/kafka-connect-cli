@@ -15,8 +15,8 @@ var validate bool
 
 var ConnectorCreateCmd = &cobra.Command{
 	Use:   "create",
-	Short: "short description",
-	Long:  "long description",
+	Short: "create a connector",
+	Long:  "Allows to create a connector from a configuration file",
 	Run: func(cmd *cobra.Command, args []string) {
 		var response *http.Response
 		var err error
@@ -35,9 +35,9 @@ var ConnectorCreateCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorCreateCmd.Flags().StringVarP(&connectorPath, "config-path", "", "", "path to the connector configuration file (required)")
+	ConnectorCreateCmd.Flags().StringVarP(&connectorPath, "config-path", "", "", "path to the connector JSON configuration file (required)")
 	ConnectorCreateCmd.MarkFlagRequired("config-path")
-	ConnectorCreateCmd.Flags().BoolVarP(&validate, "validate", "", false, "validates the connector configuration; the creation is only simulated and is NOT executed")
+	ConnectorCreateCmd.Flags().BoolVarP(&validate, "validate", "", false, "validates the connector configuration; connector is NOT created")
 }
 
 func doCreateCall(configFile []byte) (*http.Response, error) {

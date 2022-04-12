@@ -12,8 +12,8 @@ var includeTasks, onlyFailed bool
 
 var ConnectorRestartCmd = &cobra.Command{
 	Use:   "restart",
-	Short: "short description",
-	Long:  "long description",
+	Short: "restart a connector",
+	Long:  "Allows to restart a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = buildRestartPath()
 		fmt.Println("making a call to", path) // control statement print - TOREMOVE
@@ -30,8 +30,8 @@ var ConnectorRestartCmd = &cobra.Command{
 func init() {
 	ConnectorRestartCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to restart (required)")
 	ConnectorRestartCmd.MarkFlagRequired("name")
-	ConnectorRestartCmd.Flags().BoolVarP(&includeTasks, "include-tasks", "", false, "whether to restart also the connector tasks")
-	ConnectorRestartCmd.Flags().BoolVarP(&onlyFailed, "failed-only", "", false, "whether to restart only the failed instances")
+	ConnectorRestartCmd.Flags().BoolVarP(&includeTasks, "include-tasks", "", false, "restart also the connector tasks")
+	ConnectorRestartCmd.Flags().BoolVarP(&onlyFailed, "failed-only", "", false, "restart only the failed instances")
 }
 
 func buildRestartPath() string {

@@ -22,8 +22,8 @@ type connectConfig struct {
 
 var ConnectorCmd = &cobra.Command{
 	Use:   "connector",
-	Short: "short description",
-	Long:  "long description",
+	Short: "manage connectors",
+	Long:  "Allows to manage the connectors in the cluster",
 }
 
 func init() {

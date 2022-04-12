@@ -12,8 +12,8 @@ import (
 
 var ConnectorDeleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "short description",
-	Long:  "long description",
+	Short: "delete a connector",
+	Long:  "Allows to delete a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName
 		fmt.Println("making a call to", path) // control statement print - TOREMOVE

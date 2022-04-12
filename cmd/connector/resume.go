@@ -12,8 +12,8 @@ import (
 
 var ConnectorResumeCmd = &cobra.Command{
 	Use:   "resume",
-	Short: "short description",
-	Long:  "long description",
+	Short: "resume a connector",
+	Long:  "Allows to resume processing for a connector that was previously paused",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName + "/resume"
 		fmt.Println("making a call to", path) // control statement print - TOREMOVE

@@ -12,8 +12,8 @@ import (
 
 var ConnectorPauseCmd = &cobra.Command{
 	Use:   "pause",
-	Short: "short description",
-	Long:  "long description",
+	Short: "pause a connector",
+	Long:  "Allows to pause a specific connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName + "/pause"
 		fmt.Println("making a call to", path) // control statement print - TOREMOVE

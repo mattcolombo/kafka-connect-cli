@@ -12,8 +12,8 @@ var configOnly, statusOnly bool
 
 var ConnectorGetCmd = &cobra.Command{
 	Use:   "get",
-	Short: "short description",
-	Long:  "long description",
+	Short: "shows information on a connector",
+	Long:  "Shows the information on a connector, which includes configuration and status of the connector and tasks",
 	Run: func(cmd *cobra.Command, args []string) {
 		// check that only one of the status and cofig flags are used (if any)
 		utilities.CheckMutuallyExclusive(configOnly, statusOnly, "the --status and --config flags are mutually exclusive. Please use only one.")
@@ -29,10 +29,10 @@ var ConnectorGetCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorGetCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to show (required)")
+	ConnectorGetCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector (required)")
 	ConnectorGetCmd.MarkFlagRequired("name")
-	ConnectorGetCmd.Flags().BoolVarP(&configOnly, "config-only", "c", false, "shows the status of the connector (cannot be used with --status-only)")
-	ConnectorGetCmd.Flags().BoolVarP(&statusOnly, "status-only", "s", false, "shows the connector configuration (cannot be used with --config-only)")
+	ConnectorGetCmd.Flags().BoolVarP(&configOnly, "config-only", "c", false, "shows only the status of the connector (cannot be used with --status-only)")
+	ConnectorGetCmd.Flags().BoolVarP(&statusOnly, "status-only", "s", false, "shows only the connector configuration (cannot be used with --config-only)")
 }
 
 func buildGetPath() string {

@@ -12,8 +12,8 @@ var showStatus, showInfo bool
 
 var ConnectorListCmd = &cobra.Command{
 	Use:   "list",
-	Short: "short description",
-	Long:  "long description",
+	Short: "list the connectors on the cluster",
+	Long:  "Produces a list of all the connectors currently running on the cluster",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = buildListPath()
 		fmt.Println("making a call to", path) // control statement print - TOREMOVE
@@ -27,8 +27,8 @@ var ConnectorListCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorListCmd.Flags().BoolVarP(&showStatus, "show-status", "", false, "whether the command should show or not the status for each connector")
-	ConnectorListCmd.Flags().BoolVarP(&showInfo, "show-info", "", false, "whether the command should expand or not on extra info for each connector")
+	ConnectorListCmd.Flags().BoolVarP(&showStatus, "show-status", "", false, "show also the status for each connector")
+	ConnectorListCmd.Flags().BoolVarP(&showInfo, "show-info", "", false, "expand extra info for each connector")
 }
 
 func buildListPath() string {
