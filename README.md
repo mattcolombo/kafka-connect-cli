@@ -32,6 +32,8 @@ A great guide on how the Connect API works in general, and all the endpoints it 
 * Fix printer utility for restart when using --include-tasks (the response body needs to be printed too)
 * Complete the documentation for CONFIGURATION (see below)
 * Comment properly the whole code
+* Test for extending the image by providing different config files and creating aliases in the Dockerfile directly (+ document instructions if successful). For this to happen base image has been converted to Ubuntu
+* Add some base tools to docker image (jq, some others if required)
 * Create/update correctly the base docker image and push the CLI to DockerHub
 * Investigate creating aliases in the docker image and see if they can be added as well as the configuration files (in the image they could be added to /connect-config/)
 

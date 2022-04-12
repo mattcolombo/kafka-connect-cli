@@ -25,7 +25,7 @@ FROM scratch as artifact
 COPY --from=builder /builder/output/kconnect-cli* /build-output/
 
 # building the actual useable image
-FROM alpine:latest
+FROM ubuntu:latest
 # refreshing ARG value for current image
 ARG CLIVERSION
 # Setting the working directory in the root and adding the script managing the sleep and the graceful exit if required
