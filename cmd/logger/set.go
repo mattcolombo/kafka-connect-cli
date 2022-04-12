@@ -14,7 +14,7 @@ var setPluginClass, setLevel string
 
 var LoggerSetCmd = &cobra.Command{
 	Use:   "set",
-	Short: "Sets the log level set for a logger",
+	Short: "sets the log level set for a logger",
 	Long:  "Allows to set the level set for a specific logger or connector plugin; allowed log levels are Java ones",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
@@ -32,8 +32,8 @@ var LoggerSetCmd = &cobra.Command{
 }
 
 func init() {
-	LoggerSetCmd.Flags().StringVarP(&setPluginClass, "plugin-class", "", "", "plugin class to check for log level (required)")
-	LoggerSetCmd.Flags().StringVarP(&setLevel, "level", "", "", "log level to be set (required)")
+	LoggerSetCmd.Flags().StringVarP(&setPluginClass, "plugin-class", "", "", "plugin class to set the log level for (required)")
+	LoggerSetCmd.Flags().StringVarP(&setLevel, "level", "", "", "log level to set (required)")
 	LoggerSetCmd.MarkFlagRequired("plugin-class")
 	LoggerSetCmd.MarkFlagRequired("level")
 }

@@ -10,8 +10,8 @@ import (
 
 var TaskListCmd = &cobra.Command{
 	Use:   "list",
-	Short: "Lists the tasks for a connector",
-	Long:  "Allows to get a list of tasks owned by a specified connector",
+	Short: "lists the tasks for a connector",
+	Long:  "Allows to get a list of the tasks owned by a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName + "/tasks"
 		fmt.Println("making a call to", path) // control statement print - TOREMOVE

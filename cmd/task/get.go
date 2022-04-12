@@ -13,7 +13,7 @@ var taskGetID int
 
 var TaskGetCmd = &cobra.Command{
 	Use:   "get",
-	Short: "Shows info on a task",
+	Short: "shows info on a task",
 	Long:  "Allows to gather information on a specific task owned by a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName + "/tasks/" + strconv.Itoa(taskGetID) + "/status"

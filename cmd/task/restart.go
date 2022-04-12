@@ -13,7 +13,7 @@ var taskRestartID int
 
 var TaskRestartCmd = &cobra.Command{
 	Use:   "restart",
-	Short: "Restarts a connector task",
+	Short: "restarts a connector task",
 	Long:  "Allows to restart a specific task for a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName + "/tasks/" + strconv.Itoa(taskRestartID) + "/restart"

@@ -12,14 +12,14 @@ var showPlugins bool
 
 var ClusterCmd = &cobra.Command{
 	Use:   "cluster",
-	Short: "Gather information on a Connect cluster",
-	Long:  "Allows to gather information on a Connect cluster, and if required on the plugins installed",
+	Short: "Gather information on the Connect cluster",
+	Long:  "Gather information on the Connect cluster specified in the configuration file used; if required also lists the plugins installed",
 }
 
 var ClusterGet = &cobra.Command{
 	Use:   "get",
-	Short: "Show info about the cluster",
-	Long:  "Shows the information about the cluster, and if required produces a list of the installed plugins",
+	Short: "show info about the cluster",
+	Long:  "Shows the information about the cluster; can also produce a list of the installed plugins",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("--- Connect Cluster Info ---")
 		getInfo("/")
@@ -32,7 +32,7 @@ var ClusterGet = &cobra.Command{
 
 func init() {
 	ClusterCmd.AddCommand(ClusterGet)
-	ClusterGet.Flags().BoolVarP(&showPlugins, "show-plugins", "", false, "whether the command should show or not the list of plugins currently installed")
+	ClusterGet.Flags().BoolVarP(&showPlugins, "show-plugins", "", false, "produces the list of plugins currently installed along with the cluster info")
 }
 
 func getInfo(path string) {

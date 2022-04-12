@@ -16,7 +16,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "kconnect-cli",
-	Short: "Command line tool to manage a Kafka Connect installation",
+	Short: "command line tool to manage a Kafka Connect installation",
 	Long: `A comprehensive command line tool to manage a Kafka Connect installation. 
 Allows to gather information about the cluster, connectors, tasks loggers and manage them.
 ---

@@ -10,8 +10,8 @@ import (
 
 var LoggerListCmd = &cobra.Command{
 	Use:   "list",
-	Short: "List current loggers and relative log levels",
-	Long:  "Allows to obtaian a ist of the currently enabled loggers and their log levels.",
+	Short: "list current loggers and log levels",
+	Long:  "Allows to obtaian a list of the currently enabled loggers and their log levels.",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
 			var loggerListURL string = host + "/admin/loggers"

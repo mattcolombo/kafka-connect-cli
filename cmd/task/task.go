@@ -8,12 +8,12 @@ var connectorName string
 
 var TaskCmd = &cobra.Command{
 	Use:   "task",
-	Short: "Manage connector tasks",
+	Short: "manage connector tasks",
 	Long:  "Allows to manage connector tasks",
 }
 
 func init() {
-	TaskCmd.PersistentFlags().StringVarP(&connectorName, "name", "n", "", "name of the connector to get tasks for (required)")
+	TaskCmd.PersistentFlags().StringVarP(&connectorName, "name", "n", "", "name of the connector (required)")
 	TaskCmd.MarkPersistentFlagRequired("name")
 	TaskCmd.AddCommand(TaskListCmd)
 	TaskCmd.AddCommand(TaskGetCmd)

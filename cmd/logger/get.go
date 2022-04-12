@@ -12,7 +12,7 @@ var getPluginClass string
 
 var LoggerGetCmd = &cobra.Command{
 	Use:   "get",
-	Short: "Shows the log level set for a logger",
+	Short: "shows the log level set for a logger",
 	Long:  "Allows to check the level set for a specific logger or connector plugin",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
@@ -30,6 +30,6 @@ var LoggerGetCmd = &cobra.Command{
 }
 
 func init() {
-	LoggerGetCmd.Flags().StringVarP(&getPluginClass, "plugin-class", "", "", "plugin class to check for log level (required)")
+	LoggerGetCmd.Flags().StringVarP(&getPluginClass, "plugin-class", "", "", "plugin class to check the log level for (required)")
 	LoggerGetCmd.MarkFlagRequired("plugin-class")
 }

@@ -6,7 +6,7 @@ import (
 
 var LoggerCmd = &cobra.Command{
 	Use:   "logger",
-	Short: "Manage loggers at runtime",
+	Short: "manage loggers at runtime",
 	Long: `Allows to manage loggers and log levels at runtime without worker restart. 
 ---
 Because loggers and log levels can be set independently for each worker, this command will make the same 
