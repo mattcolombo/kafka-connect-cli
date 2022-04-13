@@ -18,7 +18,8 @@ type Tls struct {
 
 type BasicAuth struct {
 	Enabled bool   `yaml:"enabled"`
-	Userref string `yaml:"userref"`
+	User    string `yaml:"user"`
+	Passref string `yaml:"passref"`
 }
 
 type TokenAuth struct {
