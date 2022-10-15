@@ -28,8 +28,8 @@ COPY --from=builder /builder/output/kconnect-cli* /build-output/
 FROM ubuntu:22.04
 # refreshing ARG value for current image
 ARG CLIVERSION
-# Installing jq for ease of management of JSON responses
-RUN apt update; apt install jq -y
+# Installing jq for ease of management of JSON responses and vim to allow for managing files if required
+RUN apt update; apt install jq -y; apt install vim -y
 # Setting the working directory in the root and adding the script managing the sleep and the graceful exit if required
 WORKDIR /background
 COPY ./installation/utils/stay_alive.sh /background/stay_alive.sh
