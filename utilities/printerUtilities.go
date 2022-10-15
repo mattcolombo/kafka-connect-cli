@@ -14,7 +14,7 @@ func PrintEmptyBodyResponse(response *http.Response, successCode int, message st
 
 	if response.StatusCode == successCode {
 		fmt.Println(message)
-		fmt.Println("Connect responds:", response.Status) // TOREMOVE control statement not quite required in the future
+		//fmt.Println("Connect responds:", response.Status) // control statement not quite required in the future
 	} else {
 		fmt.Println("Connect responds:", response.Status, "-", extractMessageFromJsonError(response))
 	}

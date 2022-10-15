@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
 )
 
@@ -45,7 +44,7 @@ this package so do not need to be available to the rest of the CLI.
 They may be moved in the future if required while refactoring.
 */
 func extractRequestBody(filePath string) []byte {
-	fmt.Println("I am importing the configuration file from", filePath) // control statement print - TOREMOVE
+	//fmt.Println("I am importing the configuration file from", filePath) // control statement print
 	file, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
@@ -83,6 +82,6 @@ func extractConnectorConfig(file []byte) []byte {
 		fmt.Printf("Error while building the request body %s\n", err)
 		os.Exit(1)
 	}
-	utilities.PrettyPrintJson(jsonData) //TOREMOVE control statement
+	//utilities.PrettyPrintJson(jsonData) // control statement
 	return jsonData
 }

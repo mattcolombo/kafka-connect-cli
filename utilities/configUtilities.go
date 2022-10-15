@@ -21,7 +21,7 @@ func ImportConfig() ConfigurationYaml {
 		path = defaultLocation
 	}
 
-	fmt.Println("I am importing the configuration file from", path) // control statement print - TOREMOVE
+	//fmt.Println("I am importing the configuration file from", path) // control statement print
 	file, err := ioutil.ReadFile(path)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {

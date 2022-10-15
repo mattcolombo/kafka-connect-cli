@@ -3,7 +3,6 @@ package utilities
 import (
 	"crypto/tls"
 	"crypto/x509"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -40,7 +39,7 @@ func createTlsClient(capath string, certpath string, keypath string) *http.Clien
 }
 
 func createClient() *http.Client {
-	fmt.Println("I am creating the connect client") // control statement print - TOREMOVE
+	//fmt.Println("I am creating the connect client") // control statement print
 	if ConnectConfiguration.Tls.Enabled {
 		return createTlsClient(ConnectConfiguration.Tls.CaPath, ConnectConfiguration.Tls.Certpath, ConnectConfiguration.Tls.Keypath)
 	} else {
