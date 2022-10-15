@@ -7,7 +7,7 @@ import (
 
 var version = []byte(`{
 	"Major": "0", 
-	"Minor": "0", 
+	"Minor": "2", 
 	"GitVersion": "---", 
 	"GitCommit": "---"}`)
 
