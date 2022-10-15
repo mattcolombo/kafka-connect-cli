@@ -3,7 +3,6 @@ package utilities
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 
 	"gopkg.in/yaml.v3"
@@ -22,7 +21,7 @@ func ImportConfig() ConfigurationYaml {
 	}
 
 	//fmt.Println("I am importing the configuration file from", path) // control statement print
-	file, err := ioutil.ReadFile(path)
+	file, err := os.ReadFile(path)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
 			fmt.Println("Config file not found! Please add the path to the configuration file as an environment variable named CONNECTCFG")

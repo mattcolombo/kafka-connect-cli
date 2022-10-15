@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -45,7 +44,7 @@ They may be moved in the future if required while refactoring.
 */
 func extractRequestBody(filePath string) []byte {
 	//fmt.Println("I am importing the configuration file from", filePath) // control statement print
-	file, err := ioutil.ReadFile(filePath)
+	file, err := os.ReadFile(filePath)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
 			fmt.Println("Connector config file not found!")

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 )
@@ -23,7 +23,7 @@ func PrintEmptyBodyResponse(response *http.Response, successCode int, message st
 func PrintResponseJson(response *http.Response) {
 	defer response.Body.Close()
 
-	body, err := ioutil.ReadAll(response.Body)
+	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -40,7 +40,7 @@ func PrettyPrintJson(data []byte) {
 func extractMessageFromJsonError(response *http.Response) string {
 	defer response.Body.Close()
 
-	body, err := ioutil.ReadAll(response.Body)
+	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

@@ -3,15 +3,15 @@ package utilities
 import (
 	"crypto/tls"
 	"crypto/x509"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
 func createTlsClient(capath string, certpath string, keypath string) *http.Client {
 
 	// the CertPool wants to add a root as a []byte so we read the file ourselves
-	caCert, err := ioutil.ReadFile(capath)
+	caCert, err := os.ReadFile(capath)
 	if err != nil {
 		log.Fatal(err)
 	}
