@@ -26,17 +26,3 @@ The main commands to manage a connect cluster resource are as follow:
 ## Further reading
 
 A great guide on how the Connect API works in general, and all the endpoints it offers can be found for example in the [Confluent official documentation](https://docs.confluent.io/platform/current/connect/references/restapi.html).
-
-## TODO
-
-* Fix printer utility for restart when using --include-tasks (the response body needs to be printed too)
-* Complete the documentation for CONFIGURATION (see below)
-* Comment properly the whole code
-* Test for extending the image by providing different config files and creating aliases in the Dockerfile directly (+ document instructions if successful). For this to happen base image has been converted to Ubuntu
-* Add some base tools to docker image (jq, some others if required)
-* Create/update correctly the base docker image and push the CLI to DockerHub
-* Investigate creating aliases in the docker image and see if they can be added as well as the configuration files (in the image they could be added to /connect-config/)
-
-* Check if the configuration file can be passed as a CM in the AKS implementation (once we get there)
-* Add documentation folder/file for the Installation; [done here](installation/INSTALLATION-GUIDE.md)
-* Add a documentation file for the configuration instructions (including the aliases for Linux and maybe Windows if I can figure them out) and reduce on the main README page. Page prepared [here](docs/CONFIGURATION.md) but needs to be filled.
