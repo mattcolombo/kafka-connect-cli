@@ -13,21 +13,21 @@ All the commands that require a file path as input, require a connector configur
 
 The above flags can be used at the same time, in which case both the status and configuration information will be shown.
 
---**NOTE**-- Using this operation will expose the complete configuration of the connector, including credentials if present
+--**NOTE**-- using this operation will expose the complete configuration of the connector, including credentials if present
 
 ## get
 
 `kconnect-cli connector get`: requires flag `--name` flag (shorthand `-n`) for the connector name, and allows optional flags `--status-only` (shorthand `-s`) and `--config-only` (shorthand `-c`). Provides information on the connector specified by the `--name` flag, together with the current configuration and status of the connector and tasks. Use the `--config-only` optional flag to show _only_ the configuration and the `--status-only` optional flag to show _only_ the status of the connector and related tasks. 
 
---**NOTE**-- As already stated in the previous section, showing the configuration will expose in clear text any confidential information contained in the connector configuration (including credentials) unless they are secured in some other way (see [this page](https://docs.confluent.io/platform/current/connect/security.html#externalizing-secrets) for possible solutions to this issue; however securing Connect is out of the scope of this project so no more will be discussed here).
+--**NOTE**-- as already stated in the previous section, showing the configuration will expose in clear text any confidential information contained in the connector configuration (including credentials) unless they are secured in some other way (see [this page](https://docs.confluent.io/platform/current/connect/security.html#externalizing-secrets) for possible solutions to this issue; however securing Connect is out of the scope of this project so no more will be discussed here).
 
---**NOTE**-- The `--config-only` and `--status-only` flags are mutually exclusive, therefore only one can be used at the same time.
+--**NOTE**-- the `--config-only` and `--status-only` flags are mutually exclusive, therefore only one can be used at the same time.
 
 ## create
 
 `kconnect-cli connector create`: requires flag `--config-path` flag for the path to the connector configuration file in JSON format; allows optional boolean flag `--validate`. Creates a new connector using the configuration file selected. If the `--validate` flag is added, the connector is _NOT_ created, but instead the configuration is validated against the connector plugin class. Uses the `POST /connectors` endpoint for the creation, and `PUT /connector-plugins/(string:plugin_type)/config/validate` endpoint for the validation.
 
---**NOTE**-- The validation of the connector configuration will throw at least one error due to the name missing in the configuration. This is because this endpoint (and exclusively this one) actually requires the connector name to be part of the configuration part of the JSON, rather than separate as requested for every other command. This is not an issue, as long as the user is aware that the `missing name` error is always going to be thrown. If this is the only error, the connector can be uploaded without failures.
+--**NOTE**-- the validation of the connector configuration will throw at least one error due to the name missing in the configuration. This is because this endpoint (and exclusively this one) actually requires the connector name to be part of the configuration part of the JSON, rather than separate as requested for every other command. This is not an issue, as long as the user is aware that the `missing name` error is always going to be thrown. If this is the only error, the connector can be uploaded without failures.
 
 ## update
 
