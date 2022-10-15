@@ -13,21 +13,21 @@ All the commands that require a file path as input, require a connector configur
 
 The above flags can be used at the same time, in which case both the status and configuration information will be shown.
 
-:warning: Using this operation will expose the complete configuration of the connector, including credentials if present
+--**NOTE**-- Using this operation will expose the complete configuration of the connector, including credentials if present
 
 ## get
 
 `kconnect-cli connector get`: requires flag `--name` flag (shorthand `-n`) for the connector name, and allows optional flags `--status-only` (shorthand `-s`) and `--config-only` (shorthand `-c`). Provides information on the connector specified by the `--name` flag, together with the current configuration and status of the connector and tasks. Use the `--config-only` optional flag to show _only_ the configuration and the `--status-only` optional flag to show _only_ the status of the connector and related tasks. 
 
-:warning: As already stated in the previous section, showing the configuration will expose in clear text any confidential information contained in the connector configuration (including credentials) unless they are secured in some other way (see [this page](https://docs.confluent.io/platform/current/connect/security.html#externalizing-secrets) for possible solutions to this issue; however securing Connect is out of the scope of this project so no more will be discussed here).
+--**NOTE**-- As already stated in the previous section, showing the configuration will expose in clear text any confidential information contained in the connector configuration (including credentials) unless they are secured in some other way (see [this page](https://docs.confluent.io/platform/current/connect/security.html#externalizing-secrets) for possible solutions to this issue; however securing Connect is out of the scope of this project so no more will be discussed here).
 
-:warning: The `--config-only` and `--status-only` flags are mutually exclusive, therefore only one can be used at the same time.
+--**NOTE**-- The `--config-only` and `--status-only` flags are mutually exclusive, therefore only one can be used at the same time.
 
 ## create
 
 `kconnect-cli connector create`: requires flag `--config-path` flag for the path to the connector configuration file in JSON format; allows optional boolean flag `--validate`. Creates a new connector using the configuration file selected. If the `--validate` flag is added, the connector is _NOT_ created, but instead the configuration is validated against the connector plugin class. Uses the `POST /connectors` endpoint for the creation, and `PUT /connector-plugins/(string:plugin_type)/config/validate` endpoint for the validation.
 
-:warning: The validation of the connector configuration will throw at least one error due to the name missing in the configuration. This is because this endpoint (and exclusively this one) actually requires the connector name to be part of the configuration part of the JSON, rather than separate as requested for every other command. This is not an issue, as long as the user is aware that the `missing name` error is always going to be thrown. If this is the only error, the connector can be uploaded without failures.
+--**NOTE**-- The validation of the connector configuration will throw at least one error due to the name missing in the configuration. This is because this endpoint (and exclusively this one) actually requires the connector name to be part of the configuration part of the JSON, rather than separate as requested for every other command. This is not an issue, as long as the user is aware that the `missing name` error is always going to be thrown. If this is the only error, the connector can be uploaded without failures.
 
 ## update
 
@@ -49,4 +49,4 @@ The above flags can be used at the same time, in which case both the status and 
 
 `kconnect-cli connector resume`: requires flag `--name` flag (shorthand `-n`) for the connector name; allows boolean flags `--include-tasks` and `--failed-only`. In the vanilla version, restarts the connector specified by `--name`. Note that this only restarts the connector process itself, it does _NOT_ restart any of the tasks parrt of such connector. Tasks would need to be restarted using the `task restart` command. However, adding the `--include-tasks` will restart the connector and all the related tasks. Using the `--failed-only` flag will only restart the tasks (and the connector itself) in the case that the state is FAILED. Uses the `PUT /connectors/(string:name)/restart` endpoint; adds the `includeTasks=true` and `onlyFailed=true` if the relative flags are selected.
 
-:warning: the query parameters `includeTasks=true` and `onlyFailed=true` were only added to Kafka Connect as part of [KIP-745](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=181308623). That is, they were added quite recently, and therefore may not work on older versions of Connect. If such is the case, adding the flags will not cause the command to fail, but will not make any difference. On older versions of Connect the flags are redundant and the behaviour of this command will be the same with or without flags.
+--**NOTE**-- the query parameters `includeTasks=true` and `onlyFailed=true` were only added to Kafka Connect as part of [KIP-745](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=181308623). That is, they were added quite recently, and therefore may not work on older versions of Connect. If such is the case, adding the flags will not cause the command to fail, but will not make any difference. On older versions of Connect the flags are redundant and the behaviour of this command will be the same with or without flags.
