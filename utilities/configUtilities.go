@@ -12,7 +12,7 @@ import (
 // add in the documentation aliases for Linux to load different environments
 
 var ConnectConfiguration ConfigurationYaml = ImportConfig()
-var defaultLocation string = "./connect-config.yaml"
+var defaultLocation string = "./kconnect-cli-config.yaml"
 
 func ImportConfig() ConfigurationYaml {
 	path, isSet := os.LookupEnv("CONNECTCFG")
