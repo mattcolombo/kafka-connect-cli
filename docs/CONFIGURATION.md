@@ -1,6 +1,6 @@
 # Configuration Guide
 
-For the CLI to work, some information about the Kafka Connect cluster to connect to must be provided. This is done through a configuration file in YAML format; the structure for the configuration file is explained in the (#configuration-file-structure) section. Notice that the configuration file is the first thing that is loaded as the CLI is invoked, so it cannot be provided as part of the command itself, but must be provided differently. There are two options for this, which are deswcribed below in the (#locating-the-configuration-file) section.
+For the CLI to work, some information about the Kafka Connect cluster to connect to must be provided. This is done through a configuration file in YAML format; the structure for the configuration file is explained in the (configuration-file-structure) section. Notice that the configuration file is the first thing that is loaded as the CLI is invoked, so it cannot be provided as part of the command itself, but must be provided differently. There are two options for this, which are deswcribed below in the [correct section](#locating-the-configuration-file).
 
 ## Locating the configuration file
 
