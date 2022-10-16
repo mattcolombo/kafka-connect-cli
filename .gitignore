@@ -14,9 +14,8 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-# Configuration file temporarily not 
-connect-config.json
-connect-config.yaml
+# Local configuration files for testing only, not required to commit
+kconnect-cli-config.yaml
 connector_*
 
 # todo list does not need to be published
