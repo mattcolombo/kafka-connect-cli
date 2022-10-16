@@ -1,6 +1,6 @@
 # kafka-connect-cli
 
-A comprehensive command line tool to manage a Kafka Connect installation, invoked by using `kconnect-cli`. The CLI leverages the Connect API, effectively creating a client under the cover and issuing requests to said API. It will allow to work with variously configured Connect clusters (including using mTLS, basic and token/API key based authentication). 
+A comprehensive command line tool to manage Kafka connectors and some general configurations in a Connect installation; main command `kconnect-cli`. The CLI leverages the Connect Rest API, creating a client and issuing requests to said API. It allows to work with variously configured Connect clusters (including using mTLS, basic and token/API-key based authentication). 
 
 ## Configuration requirements
 
@@ -22,6 +22,14 @@ The main commands to manage a connect cluster resource are as follow:
 * `logger` allows to gather information and manage loggers and log levels. Documentation on the usage of this resource can be found [here](docs/LOGGER.md);
 * `version` returns the current version of the CLI.
 * `help` provides help on the usage of the CLI. It can be used as a command or more commonly through the `--help` flag (or alternatively the shorthand `-h`).
+
+## Quickstart
+
+* Build it yourself
+* Using docker image
+* Using k8s and the provided image
+
+Further information and a set of smaples/utility files can be found in the [installation](docs/INSTALLATION-GUIDE.md) folder.
 
 ## Further reading
 
