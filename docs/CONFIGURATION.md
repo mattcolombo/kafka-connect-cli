@@ -6,13 +6,36 @@ For the CLI to work, some information about the Kafka Connect cluster to connect
 
 There are two options to load the correct configuration file with the instructions for contacting the Kafka Connect installation. 
 
-The first option is to set an environment variable called `CONNECTCFG` with the path to the configuration file. Using the complete path is normally better to avoid confusion (particularly if the CLI executable location is added to the system path and can therefore be reached from anywhere) but any path will in principle work.
+The first option is to set an environment variable called `CONNECTCFG` with the path to the configuration file. Using the complete path is normally better to avoid confusion (particularly if the CLI executable location is added to the system path and can therefore be reached from anywhere) but any path will in principle work. Also not that unlike the second option, since we are providing the complete path to the file, any name for the configuration file will work fine.
 
 If an environment variable as per above is not set, then the CLI will default to looking for a file called `kconnect-cli-config.yaml` in the local directory where the command is executed from. If a file cannot be found in either case, the execution will throw an error. **NOTE** here current folder refers to the folder where the user is located when running the commands, not to the folder where the CLI executable is located (in case such location is added to the PATH, and used from elsewhere).
 
-## Working with multiple configuration files (Linux only)
+Environment variables can be created using the following commands.
 
-TODO
+For Windows systems:
+```(powershell)
+$env:CONNECTCFG = '<Drive>:\path\to\config-file.yaml'
+```
+
+For Linux systems:
+```(shell)
+export CONNECTCFG=/path/to/config-file.yaml
+```
+
+## Working with multiple configuration files
+
+In the case we need to work with multiple Connect clusters, and therefore it is required to be able to switch between different configuration files, the best option is to store all the configuration files in a common directory by giving them clear names to specify which cluster they refer to and then use the environment variable `CONNECTCFG` to switch between them. Alternatively, one could use different directories for each cluster and add in each one a `kconnect-cli-config.yaml` file with the correct information in it; switching would then happen by moving directories. This last option however requires all the configuration files to have the same name so it would make less clear which one is being used at this specific time.
+
+### Using aliases for faster switching
+
+When running the CLI on a Linux system, a quicker way to switch between configuration files is to create aliases to run the `export` command. Aliases are created using
+```(shell)
+alias kcli-config1='export CONNECTCFG=/path/to/config-file-1.yaml'
+alias kcli-config2='export CONNECTCFG=/path/to/config-file-2.yaml'
+```
+and so on for however many config files one may need to use. Switching then can simply be done by running the alias (e.g. `kcli-config1` will set the `config-file-1.yaml` as current in the environment variable, and so on). 
+
+--**NOTE**-- exports and aliases are only going to be persisted for the length of the session. Once a new session is started, they will not be available any longer. To make those permanent, simply add them to the `.bashrc` file or similar depending on the system in use. This way they will be loaded in as soon as a session is started and will therefore be always present.
 
 ## Configuration file structure
 
