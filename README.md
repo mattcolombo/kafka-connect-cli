@@ -27,7 +27,7 @@ TODO
 * Using docker image
 * Using k8s and the provided image
 
-Further information and a set of smaples/utility files can be found in the [installation](/docs/INSTALLATION-GUIDE.md) folder.
+Further information on installation or build of the CLI can be found in the [installation guide](/docs/INSTALLATION-GUIDE.md); a set of samples/utility files and resources can be found in the [samples](/samples/) folder.
 
 ## Further reading
 
