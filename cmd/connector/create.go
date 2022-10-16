@@ -42,7 +42,7 @@ func init() {
 
 func doCreateCall(configFile []byte) (*http.Response, error) {
 	var path string = "/connectors"
-	fmt.Println("making a call to", path) // control statement print - TOREMOVE
+	//fmt.Println("making a call to", path) // control statement print
 	requestBody := bytes.NewBuffer(configFile)
 	return utilities.DoCallByPath(http.MethodPost, path, requestBody)
 }
@@ -50,7 +50,7 @@ func doCreateCall(configFile []byte) (*http.Response, error) {
 func doValidateCall(configFile []byte) (*http.Response, error) {
 	pluginName := extractPluginType(configFile)
 	var path string = "/connector-plugins/" + pluginName + "/config/validate"
-	fmt.Println("making a call to", path) // control statement print - TOREMOVE
+	//fmt.Println("making a call to", path) // control statement print
 	configData := extractConnectorConfig(configFile)
 	requestBody := bytes.NewBuffer(configData)
 	return utilities.DoCallByPath(http.MethodPut, path, requestBody)

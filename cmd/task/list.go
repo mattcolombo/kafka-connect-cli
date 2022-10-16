@@ -14,7 +14,7 @@ var TaskListCmd = &cobra.Command{
 	Long:  "Allows to get a list of the tasks owned by a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName + "/tasks"
-		fmt.Println("making a call to", path) // control statement print - TOREMOVE
+		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodGet, path, nil)
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)

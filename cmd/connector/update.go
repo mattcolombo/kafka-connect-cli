@@ -26,7 +26,7 @@ var ConnectorUpdateCmd = &cobra.Command{
 		configData := extractConnectorConfig(connectorConfiguration)
 		requestBody := bytes.NewBuffer(configData)
 		var path string = "/connectors/" + connectorName + "/config"
-		fmt.Println("making a call to", path) // control statement print - TOREMOVE
+		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodPut, path, requestBody)
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)

@@ -20,7 +20,7 @@ var LoggerSetCmd = &cobra.Command{
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
 			var loggerListURL string = host + "/admin/loggers/" + setPluginClass
 			fmt.Println("--- Setting Log Level for Connect worker at", host, "---")
-			fmt.Println("making a call to", loggerListURL) // control statement print - TOREMOVE
+			//fmt.Println("making a call to", loggerListURL) // control statement print
 			response, err := utilities.DoCallByHost(http.MethodPut, loggerListURL, bytes.NewBuffer(buildSetPayload()))
 			if err != nil {
 				fmt.Printf("The HTTP request failed with error %s\n", err)

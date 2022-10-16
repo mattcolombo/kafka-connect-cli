@@ -17,7 +17,7 @@ var TaskRestartCmd = &cobra.Command{
 	Long:  "Allows to restart a specific task for a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName + "/tasks/" + strconv.Itoa(taskRestartID) + "/restart"
-		fmt.Println("making a call to", path) // control statement print - TOREMOVE
+		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodPost, path, nil)
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)

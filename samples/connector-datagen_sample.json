@@ -1,0 +1,13 @@
+{
+  "name": "datagen-monster",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "tasks.max": "1",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "kafka.topic": "datagen-topic-1",
+    "max.interval": "10000",
+    "iterations": "500",
+    "quickstart": "inventory"
+  }
+}

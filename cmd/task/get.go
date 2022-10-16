@@ -17,7 +17,7 @@ var TaskGetCmd = &cobra.Command{
 	Long:  "Allows to gather information on a specific task owned by a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName + "/tasks/" + strconv.Itoa(taskGetID) + "/status"
-		fmt.Println("making a call to", path) // control statement print - TOREMOVE
+		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodGet, path, nil)
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)

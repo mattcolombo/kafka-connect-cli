@@ -10,7 +10,7 @@ Further information on the use of the Connect API to control loggers at runtime 
 
 ## get
 
-`kconnect-cli logger get`: provides the log level for the specified logger in each of the Connect workers present. This command uses the `GET /admin/loggers/(string:plugin-class)` endpoint for each of the hosts specified in the CLI configuration file.
+`kconnect-cli logger get`: requires flag `--plugin-class` for the logger/plugin class. Provides the log level for the logger specified by `--plugin-class` in each of the Connect workers present. This command uses the `GET /admin/loggers/(string:plugin-class)` endpoint for each of the hosts specified in the CLI configuration file.
 
 ## set
 

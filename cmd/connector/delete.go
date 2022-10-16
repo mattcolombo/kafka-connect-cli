@@ -16,7 +16,7 @@ var ConnectorDeleteCmd = &cobra.Command{
 	Long:  "Allows to delete a connector",
 	Run: func(cmd *cobra.Command, args []string) {
 		var path string = "/connectors/" + connectorName
-		fmt.Println("making a call to", path) // control statement print - TOREMOVE
+		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodDelete, path, nil)
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)

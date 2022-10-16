@@ -18,7 +18,7 @@ var ConnectorGetCmd = &cobra.Command{
 		// check that only one of the status and cofig flags are used (if any)
 		utilities.CheckMutuallyExclusive(configOnly, statusOnly, "the --status and --config flags are mutually exclusive. Please use only one.")
 		var path string = buildGetPath()
-		fmt.Println("making a call to", path) // control statement print - TOREMOVE
+		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodGet, path, nil)
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
