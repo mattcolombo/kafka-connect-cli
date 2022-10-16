@@ -8,18 +8,20 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// TODO for documentation - architectural decision: use one yaml config file per environment, and that needs to be set in the default location or by ENV variable
-// add in the documentation aliases for Linux to load different environments
-
-var ConnectConfiguration ConfigurationYaml = ImportConfig()
+// architectural decision: use one yaml config file per environment, and that needs to be set in the default location or by ENV variable
 var defaultLocation string = "./kconnect-cli-config.yaml"
+var ConfigLoadPath string = FindConfig()
+var ConnectConfiguration ConfigurationYaml = ImportConfig(ConfigLoadPath)
 
-func ImportConfig() ConfigurationYaml {
+func FindConfig() string {
 	path, isSet := os.LookupEnv("CONNECTCFG")
 	if !isSet {
 		path = defaultLocation
 	}
+	return path
+}
 
+func ImportConfig(path string) ConfigurationYaml {
 	//fmt.Println("I am importing the configuration file from", path) // control statement print
 	file, err := os.ReadFile(path)
 	if err != nil {
