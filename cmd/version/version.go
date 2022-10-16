@@ -33,7 +33,7 @@ func init() {
 }
 
 func printCliCfg() {
-	fmt.Println("--- Configuration in use ---")
+	fmt.Println("--- Current CLI Configuration ---")
 	fmt.Printf("Configuration for the CLI is being loaded from path: %s\n", utilities.ConfigLoadPath)
 	fmt.Printf("The main URL currently in use is <%s> with protocol %s\n", utilities.ConnectConfiguration.Hostnames[0], strings.ToUpper(utilities.ConnectConfiguration.Protocol))
 }
