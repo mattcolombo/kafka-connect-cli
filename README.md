@@ -17,7 +17,7 @@ The main commands to manage a connect cluster resource are as follow:
 * `task` allows to gather information and manage connector tasks. Documentation on the usage of this resource can be found [here](/docs/TASK.md);
 * `logger` allows to gather information and manage loggers and log levels. Documentation on the usage of this resource can be found [here](/docs/LOGGER.md);
 * `version` returns the current version of the CLI.
-* `help` provides help on the usage of the CLI. It can be used as a command or more commonly through the `--help` flag (or alternatively the shorthand `-h`).
+* `help` provides help on the usage of the CLI. It can be used as a command or through the `--help` flag (shorthand `-h`).
 
 ## Quickstart
 
