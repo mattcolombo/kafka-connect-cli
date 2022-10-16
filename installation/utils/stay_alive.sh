@@ -13,6 +13,6 @@ trap die_func TERM
 #  This way if a TERM signal is received, wait will interupt the background command and execute the exit 
 #  routines instead than waiting for sleep to finish (which may take a while)
 echo "Sleeping..."
-# restarts once per day
+# the script will complete and hence teminate automatically after one day
 sleep 86400 &
 wait
