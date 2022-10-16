@@ -18,8 +18,8 @@ COPY ./cmd/ /builder/cmd/
 # building the linux and windows executable
 WORKDIR /builder/cli/
 RUN echo $CLIVERSION
-RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o /builder/output/kconnect-cli_$CLIVERSION_linux
-RUN env GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o /builder/output/kconnect-cli_$CLIVERSION_win.exe
+RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o /builder/output/kconnect-cli_linux-amd64_$CLIVERSION
+RUN env GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o /builder/output/kconnect-cli_win_amd64_$CLIVERSION.exe
 
 FROM scratch as artifact
 COPY --from=builder /builder/output/kconnect-cli* /build-output/
