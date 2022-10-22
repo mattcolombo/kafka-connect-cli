@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/sh
 
 ## handle here anything that may need to be gracefully terminated when a TERM signal is received
 die_func() {
