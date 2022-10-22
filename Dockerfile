@@ -39,7 +39,7 @@ CMD ["/background/stay_alive.sh"]
 # creating the working directory, adding the built executable from the previous step and adding the current workdir to the PATH
 WORKDIR /usr/cli
 RUN echo $CLIVERSION
-COPY --from=builder /builder/output/kconnect-cli_$CLIVERSION_linux /usr/cli/kconnect-cli
+COPY --from=builder /builder/output/kconnect-cli_linux-amd64_$CLIVERSION /usr/cli/kconnect-cli
 # adding the template configuration file for convenience (it can be modified on-site, or a new image can be built from this one with the correct ones in it)
 COPY ./samples/kconnect-cli-config.yaml.tmpl /usr/cli/kconnect-cli-config.yaml
 ENV PATH="/usr/cli:${PATH}"
