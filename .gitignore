@@ -25,3 +25,4 @@ TODO.txt
 #!installation/*
 # for now we exclude all the build assets
 installation/build-output/*
+sample-dockerfile
