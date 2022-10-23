@@ -80,18 +80,5 @@ docker run --rm -it --mount type=bind,source=<absolute-path-to-source-dir>,targe
 
 ## Running in k8s
 
+Examples [here](/samples/aks/deployment-sample.yaml)
 
-
-guide
-
-```
-docker build (--build-arg version=0.0.1) --target artifact --output type=local,dest=.\installation\ .
-```
-
-```
-docker build (--build-arg version=0.0.1) -t local/kconnect-cli:0.0.1 .
-```
-
-```
-docker run --rm -d local/kconnect-cli:0.0.1
-```
