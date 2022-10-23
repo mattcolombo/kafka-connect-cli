@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   labels: 
     app:
-      connect-cli-utils
-  name: connect-cli-utils
-  namespace: default
+      <app-name>
+  name: <app-name>
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
-      app: connect-cli-utils
+      app: <app-name>
   replicas: 1
   template:
     metadata:
       labels:
-        app: connect-cli-utils
+        app: <app-name>
     spec:
       containers:
-        - image: local/kconnect-cli-test:1
-          imagePullPolicy: Never
-          name: connect-utils
+        - image: <docker-repo>/<image>:<tag>
+          imagePullPolicy: IfNotPresent
+          name: <app-name>
           volumeMounts:
           - name: kconnect-cli-config-volume
             mountPath: "/usr/cli/config/"
@@ -34,5 +34,5 @@ spec:
       volumes: 
       - name: kconnect-cli-config-volume
         secret:
-          secretName: kconnect-cli-config-secret
+          secretName: <secret-name>
           optional: false
