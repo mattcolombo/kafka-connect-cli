@@ -4,7 +4,7 @@ A comprehensive command line tool to manage Kafka connectors and some general co
 
 ## Configuration requirements
 
-In order to be able to connect with the correct Kafka Connect cluster, a configuration file is required. This configuration file (a sample of which can be found [here](/samples/kconnect-cli-config.yaml.tmpl)) can be either added to an environment variable called `CONNECTCFG` or located in the folder where the CLI is invoked from. Notice that in the latter case the name **must** be `kconnect-cli-config.yaml`.
+In order to be able to connect with the correct Kafka Connect cluster, a configuration file is required. This configuration file (a sample of which can be found [here](/samples-templates/kconnect-cli-config.yaml.tmpl)) can be either added to an environment variable called `CONNECTCFG` or located in the folder where the CLI is invoked from. Notice that in the latter case the name **must** be `kconnect-cli-config.yaml`.
 
 A complete guide to the configuration is found [here](/docs/CONFIGURATION.md).
 
@@ -27,7 +27,7 @@ TODO
 * Using docker image
 * Using k8s and the provided image
 
-Further information on installation or build of the CLI can be found in the [installation guide](/docs/INSTALLATION-GUIDE.md); a set of samples/utility files and resources can be found in the [samples](/samples/) folder.
+Further information on installation or build of the CLI can be found in the [installation guide](/docs/INSTALLATION-GUIDE.md); a set of samples/utility files and resources can be found in the [samples](/samples-templates/) folder.
 
 ## Planned improvements and future work
 
