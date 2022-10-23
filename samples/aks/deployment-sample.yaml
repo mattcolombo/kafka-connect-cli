@@ -3,27 +3,36 @@ kind: Deployment
 metadata:
   labels: 
     app:
-      connect-utils
-  name: connect-utils
+      connect-cli-utils
+  name: connect-cli-utils
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: connect-utils
+      app: connect-cli-utils
   replicas: 1
   template:
     metadata:
       labels:
-        app: connect-utils
+        app: connect-cli-utils
     spec:
       containers:
-        - image: --
-          imagePullPolicy: Always
+        - image: local/kconnect-cli-test:1
+          imagePullPolicy: Never
           name: connect-utils
+          volumeMounts:
+          - name: kconnect-cli-config-volume
+            mountPath: "/usr/cli/config/"
+            readOnly: true
           resources:
             limits:
-              cpu: "200m"
-              memory: "200Mi"
+              cpu: 200m
+              memory: 200Mi
             requests:
               cpu: 100m
               memory: 32Mi
+      volumes: 
+      - name: kconnect-cli-config-volume
+        secret:
+          secretName: kconnect-cli-config-secret
+          optional: false
