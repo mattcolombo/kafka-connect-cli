@@ -1,5 +1,9 @@
 #!/usr/bin/sh
 
+## NOTE: when working on Windows, always make sure that this file is saved with LF line endings (rather than CRLF).
+#        Depending on how Git is setup, the files may be retrieved as CRLF, but if so, then building the Dockerfile will cause the 
+#        resulting image to not stay alive since this script will not work (it will throw a "file not found error").
+
 ## handle here anything that may need to be gracefully terminated when a TERM signal is received
 die_func() {
     echo "Terminating"
