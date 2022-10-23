@@ -34,7 +34,49 @@ docker build --target artifact --output type=local,dest=</path/to/installation> 
 
 The resulting artifacts will appear in a folder called `build-output` inside of the destination path indicated. Note that it is usually best to provide a full path, but relative paths will also work.
 
+Compiled artifacts for additional architectures/OSs will be added in the future if the requirement arises.
+
 ## Building and running in Docker
+
+One may also wish to run the CLI in Docker directly. This may create some challenges with network connectivity depending on where Docker and Kafka Connect run, but assuming connectivity is present, this is completely possible. To do this there are two options.
+
+### Pulling the prebuilt image from Docker Hub
+
+Whenever a new version of the CLI is released, a DOcker image will be available in Docker Hub with the latest version of the CLI prepackaged in. To use this simply pull the image using
+
+```
+docker pull mattcolombo/kafka-connect-cli:<tag>
+```
+
+and use it as described belolw.
+
+### Building the Docker image locally
+
+In case one would like to build the image locally (maybe due to using a slightly newer version, or some customised code from a fork of the official repo) this can be done by simply building the Dockerfile frovided. From the root of the repository, simply run
+
+```
+docker build -t <docker-repo>/<image>:<tag> .
+```
+
+using the desired names for the Docker repo, image and tag, and let the builder do its thing. Once completed, your new image is ready to use locally (or to push to whatever image repository you would like).
+
+### Running the CLI image locally in Docker
+
+Once the image is available to Docker (either having pulled the one from Docker Hub, or having built a custom one) the repository can be used directly through `docker run` commands. There is however a catch. In order to provide the configuration files for the CLI (see the [configuration documentation](/docs/CONFIGURATION.md)) to the container we need to mount a local volume containing the correct config file(s).
+
+To do so, first create the config file(s) as described (the template [here](/samples/kconnect-cli-config.yaml.tmpl) can also be used as a starting point) and save them in a local folder. Next use the `docker run` command with the options to mount that location in the container. This can be done using
+
+```
+docker run --rm -d --mount type=bind,source=<absolute-path-to-source-dir>,target=/usr/cli/config,readonly <docker-repo>/<image>:<tag>
+```
+
+This will mount the directory with the configuration file in the container at `/usr/cli/config` at which point the files can be used as described in the [configuration documentation](/docs/CONFIGURATION.md).
+
+--**NOTE**-- since the [stay_alive](/installation/utils/stay_alive.sh) script is set as the startup command of the container, running the command above will create a container that will simply sleep for one day and then terminate (unless terminated before by the user). This way the container can be started, and then once can ssh inside the container and run the CLI commands when needed. This is especially useful if running the CLI container in an environment like kubernetes. If on the onther hand one would like to simply execute a shell directly in the container, and destroy it when done, simply add the `-it` flag and the `bash` command to `docker run`. Also the `-d` flag needs to be removed, else the container will start in detached mode and not return the shell. This way the startup script will be skipped, a shell will be obtained directly in the containter and once the user closes the session the container will be destroyed. Complete command for this would be
+
+```
+docker run --rm -it --mount type=bind,source=<absolute-path-to-source-dir>,target=/usr/cli/config,readonly <docker-repo>/<image>:<tag> bash
+```
 
 ## Running in k8s
 
