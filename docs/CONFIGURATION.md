@@ -24,7 +24,9 @@ export CONNECTCFG=/path/to/config-file.yaml
 
 ## Working with multiple configuration files
 
-In the case we need to work with multiple Connect clusters, and therefore it is required to be able to switch between different configuration files, the best option is to store all the configuration files in a common directory by giving them clear names to specify which cluster they refer to and then use the environment variable `CONNECTCFG` to switch between them. Alternatively, one could use different directories for each cluster and add in each one a `kconnect-cli-config.yaml` file with the correct information in it; switching would then happen by moving directories. This last option however requires all the configuration files to have the same name so it would make less clear which one is being used at this specific time.
+In the case we need to work with multiple Connect clusters, and therefore it is required to be able to switch between different configuration files, the best option is to store all the configuration files in a common directory by giving them clear names to specify which cluster they refer to and then use the environment variable `CONNECTCFG` to switch between them. This could also be done by setting beforehand multiple environment variables with the full path to each file, and then simply assigning the correct one to `CONNECTCFG` as required.
+
+Alternatively, one could use different directories for each cluster and add in each one a `kconnect-cli-config.yaml` file with the correct information in it; switching would then happen by moving directories. This last option however requires all the configuration files to have the same name so it would make less clear which one is being used at this specific time.
 
 ### Using aliases for faster switching
 
