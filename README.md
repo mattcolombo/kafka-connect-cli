@@ -29,6 +29,12 @@ TODO
 
 Further information on installation or build of the CLI can be found in the [installation guide](/docs/INSTALLATION-GUIDE.md); a set of samples/utility files and resources can be found in the [samples](/samples/) folder.
 
+## Planned improvements and future work
+
+- Clean up and figure out what to do with "validate" output
+- Add human VS JSON output (JSON should be default but human an option)
+- Fix printer utility for restart when using --include-tasks (the response body needs to be printed too)
+
 ## Further reading
 
 A great guide on how the Connect API works in general, and all the endpoints it offers can be found for example in the [Confluent official documentation](https://docs.confluent.io/platform/current/connect/references/restapi.html).
