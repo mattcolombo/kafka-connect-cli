@@ -24,7 +24,17 @@ env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o /builder/output/kconnect-c
 
 ## Using Docker to compile the executable
 
-## Running in Docker
+An alternative to compiling the executable directly is to use Docker to do that for us. The Dockerfile provided in this repository is structured as a multistage build, and includes a builder stage that leverages the go-alpine image to compile the CLI and produce the executables as output. Then depending on how the docker build is called, these executables (for Windows and Linux with AMD64 architectures for the time being) are either downloaded locally for use or distribution, or packaged in an Ubuntu.
+
+To dowload the compiled executables locally, use (from the root folder of the repository)
+
+```
+docker build --target artifact --output type=local,dest=</path/to/installation> .
+```
+
+The resulting artifacts will appear in a folder called `build-output` inside of the destination path indicated. Note that it is usually best to provide a full path, but relative paths will also work.
+
+## Building and running in Docker
 
 ## Running in k8s
 
