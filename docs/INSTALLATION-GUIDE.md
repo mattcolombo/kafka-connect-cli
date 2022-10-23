@@ -1,4 +1,4 @@
-# kafka-connect-cli Intallation Guide
+# Installation Guide
 
 In this page we can find all the required information to compile and run the CLI. Various options exist and all of them are descirbed to some detail.
 
