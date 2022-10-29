@@ -64,7 +64,7 @@ using the desired names for the Docker repo, image and tag, and let the builder 
 
 Once the image is available to Docker (either having pulled the one from Docker Hub, or having built a custom one) the repository can be used directly through `docker run` commands. There is however a catch. In order to provide the configuration files for the CLI (see the [configuration documentation](/docs/CONFIGURATION.md)) to the container we need to mount a local volume containing the correct config file(s).
 
-To do so, first create the config file(s) as described (the template [here](/samples-templates/kconnect-cli-config.yaml.tmpl) can also be used as a starting point) and save them in a local folder. Next use the `docker run` command with the options to mount that location in the container. This can be done using
+To do so, first create the config file(s) as described (the template [here](/samples-templates/kconnect-cli-config-template.yaml) can also be used as a starting point) and save them in a local folder. Next use the `docker run` command with the options to mount that location in the container. This can be done using
 
 ```
 docker run --rm -d --mount type=bind,source=<absolute-path-to-source-dir>,target=/usr/cli/config,readonly <docker-repo>/<image>:<tag>

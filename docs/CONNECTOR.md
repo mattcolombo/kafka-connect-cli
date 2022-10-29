@@ -2,7 +2,7 @@
 
 Allows to list, gather information and manage connectors.
 
-All the commands that require a file path as input, require a connector configuration file in JSON format. A sample connector configuration file as required in all these commands can be found [here](../samples-templates/connector_sample-config.json).
+All the commands that require a file path as input, require a connector configuration file in JSON format. A sample connector configuration file as required in all these commands can be found [here](/samples-templates/connector-config-template.json).
 
 ## list
 
