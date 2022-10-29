@@ -1,5 +1,5 @@
 # adding an argument as the version, to add to the executables once built
-ARG CLIVERSION=0.2.0
+ARG CLIVERSION=v1.0.0
 
 # defining the build environment
 FROM golang:alpine AS builder 
