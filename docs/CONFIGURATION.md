@@ -24,7 +24,9 @@ export CONNECTCFG=/path/to/config-file.yaml
 
 ## Working with multiple configuration files
 
-In the case we need to work with multiple Connect clusters, and therefore it is required to be able to switch between different configuration files, the best option is to store all the configuration files in a common directory by giving them clear names to specify which cluster they refer to and then use the environment variable `CONNECTCFG` to switch between them. Alternatively, one could use different directories for each cluster and add in each one a `kconnect-cli-config.yaml` file with the correct information in it; switching would then happen by moving directories. This last option however requires all the configuration files to have the same name so it would make less clear which one is being used at this specific time.
+In the case we need to work with multiple Connect clusters, and therefore it is required to be able to switch between different configuration files, the best option is to store all the configuration files in a common directory by giving them clear names to specify which cluster they refer to and then use the environment variable `CONNECTCFG` to switch between them. This could also be done by setting beforehand multiple environment variables with the full path to each file, and then simply assigning the correct one to `CONNECTCFG` as required.
+
+Alternatively, one could use different directories for each cluster and add in each one a `kconnect-cli-config.yaml` file with the correct information in it; switching would then happen by moving directories. This last option however requires all the configuration files to have the same name so it would make less clear which one is being used at this specific time.
 
 ### Using aliases for faster switching
 
@@ -39,7 +41,7 @@ and so on for however many config files one may need to use. Switching then can 
 
 ## Configuration file structure
 
-The configuration file contains all the information required to connect to the desired installation of Kafka Connect. This includes the hosts for Connect, the protocol to use for the connection and the authentication information (if required) for the connection. A sample configuration file can be found [here](/samples/kconnect-cli-config.yaml.tmpl). Simply make a copy, rename it as `kconnect-cli-config.yaml`, fill in the required information, set the environment variable to the path to this file (the fully qualified path is best as it will allow to run the CLI from any location in the system) and you are good to go.
+The configuration file contains all the information required to connect to the desired installation of Kafka Connect. This includes the hosts for Connect, the protocol to use for the connection and the authentication information (if required) for the connection. A sample configuration file can be found [here](/samples-templates/kconnect-cli-config-template.yaml). Simply make a copy, rename it as `kconnect-cli-config.yaml`, fill in the required information, set the environment variable to the path to this file (the fully qualified path is best as it will allow to run the CLI from any location in the system) and you are good to go.
 
 * `hostnames` contains a list of all the hostnames for the workers in the Kafka Connect cluster. While most calls are going to be directed to the first one in the list, all of them are required (see note below)
 * `protocol` can be HTTP or HTTPS; in most cases it will be HTTPS if mTLS is enabled, and in general should be HTTPS if any of the authentication methods are used, but it has been left as an independent configuration for specific cases where it may be required

@@ -2,7 +2,7 @@
 
 Allows to list, gather information and manage connectors.
 
-All the commands that require a file path as input, require a connector configuration file in JSON format. A sample connector configuration file as required in all these commands can be found [here](../samples/connector_sample-config.json).
+All the commands that require a file path as input, require a connector configuration file in JSON format. A sample connector configuration file as required in all these commands can be found [here](/samples-templates/connector-config-template.json).
 
 ## list
 
@@ -49,4 +49,4 @@ The above flags can be used at the same time, in which case both the status and 
 
 `kconnect-cli connector resume`: requires flag `--name` flag (shorthand `-n`) for the connector name; allows boolean flags `--include-tasks` and `--failed-only`. In the vanilla version, restarts the connector specified by `--name`. Note that this only restarts the connector process itself, it does _NOT_ restart any of the tasks parrt of such connector. Tasks would need to be restarted using the `task restart` command. However, adding the `--include-tasks` will restart the connector and all the related tasks. Using the `--failed-only` flag will only restart the tasks (and the connector itself) in the case that the state is FAILED. Uses the `PUT /connectors/(string:name)/restart` endpoint; adds the `includeTasks=true` and `onlyFailed=true` if the relative flags are selected.
 
---**NOTE**-- the query parameters `includeTasks=true` and `onlyFailed=true` were only added to Kafka Connect as part of [KIP-745](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=181308623). That is, they were added quite recently, and therefore may not work on older versions of Connect. If such is the case, adding the flags will not cause the command to fail, but will not make any difference. On older versions of Connect the flags are redundant and the behaviour of this command will be the same with or without flags.
+--**NOTE**-- the query parameters `includeTasks=true` and `onlyFailed=true` were only added to Kafka Connect as part of [KIP-745](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=181308623). They were added quite recently, and therefore may not work on older versions of Connect. If such is the case, adding the flags will not cause the command to fail, but will not make any difference. On older versions of Connect the flags are redundant and the behaviour of this command will be the same with or without flags.

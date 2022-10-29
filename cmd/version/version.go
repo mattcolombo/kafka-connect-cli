@@ -11,10 +11,10 @@ import (
 var showCliConfig bool
 
 var version = []byte(`{
-	"Major": "0", 
-	"Minor": "2", 
-	"GitVersion": "---", 
-	"GitCommit": "---"}`)
+	"Major": "1", 
+	"Minor": "0", 
+	"GitVersion": "v1.0.0", 
+	"GitCommit": "manual_bild"}`)
 
 var VersionCmd = &cobra.Command{
 	Use:   "version",
