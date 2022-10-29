@@ -40,7 +40,7 @@ If you would like to contribute, or if you would like to modify and adapt this C
 
 ## Planned improvements and future work
 
-Few things I would like to do in the future (when time allows)
+Few things I would like to do in the future (when time allows of course)
 
 - the output of the `validate` command is very lengthy and most of it is of quite little use in most situation. While the full output should stay, I would like to find a way to shorten it and return only the errors as default;
 - JSON output is the most useful (can be parsed by jq and used in different ways) but I would like to add a human output option;
