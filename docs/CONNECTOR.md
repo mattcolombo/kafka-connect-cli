@@ -45,7 +45,7 @@ The above flags can be used at the same time, in which case both the status and 
 
 `kconnect-cli connector resume`: requires flag `--name` flag (shorthand `-n`) for the connector name. Resumes a previously paused task and allow message processing to continue. Notice that as stated above pause will not remove the task, only suspend it, so this will not restart a task, only resume the processing. If a task is in FAILED state, it will continue to be after a pause and resume. To actually restart a task (or a connector) use the `task restart` or `connector restart` actions. Uses the `PUT /connectors/(string:name)/resume` endpoint.
 
-# restart
+## restart
 
 `kconnect-cli connector resume`: requires flag `--name` flag (shorthand `-n`) for the connector name; allows boolean flags `--include-tasks` and `--failed-only`. In the vanilla version, restarts the connector specified by `--name`. Note that this only restarts the connector process itself, it does _NOT_ restart any of the tasks parrt of such connector. Tasks would need to be restarted using the `task restart` command. However, adding the `--include-tasks` will restart the connector and all the related tasks. Using the `--failed-only` flag will only restart the tasks (and the connector itself) in the case that the state is FAILED. Uses the `PUT /connectors/(string:name)/restart` endpoint; adds the `includeTasks=true` and `onlyFailed=true` if the relative flags are selected.
 
