@@ -20,6 +20,7 @@ connector_*
 
 # todo list does not need to be published
 TODO.txt
+REFERENCES.txt
 
 # but include built assets (for later)
 #!installation/*
