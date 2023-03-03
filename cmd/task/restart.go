@@ -22,7 +22,7 @@ var TaskRestartCmd = &cobra.Command{
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 		} else {
-			message := fmt.Sprintf("Task %d for connector %s was resumed successfully", taskRestartID, connectorName)
+			message := fmt.Sprintf("Task %d for connector %s was restarted successfully", taskRestartID, connectorName)
 			utilities.PrintEmptyBodyResponse(response, 204, message)
 		}
 	},
