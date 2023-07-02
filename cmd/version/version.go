@@ -14,7 +14,7 @@ var version = []byte(`{
 	"Major": "1", 
 	"Minor": "0", 
 	"GitVersion": "v1.0.0", 
-	"GitCommit": "manual_bild"}`)
+	"GitCommit": "manual_build"}`)
 
 var VersionCmd = &cobra.Command{
 	Use:   "version",
