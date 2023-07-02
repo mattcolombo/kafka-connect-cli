@@ -12,10 +12,12 @@ import (
 )
 
 var ConnectorUpdateCmd = &cobra.Command{
-	Use:   "update",
+	Use:   "update [flags] connector_name",
 	Short: "update a connector configuration",
 	Long:  "Allows to update a connector configuration from an updated configuration file",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		connectorName = args[0]
 		connectorConfiguration := extractRequestBody(connectorPath)
 		connectorNameFromConfig := extractConnectorName(connectorConfiguration)
 		if connectorName != connectorNameFromConfig {
@@ -37,10 +39,8 @@ var ConnectorUpdateCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorUpdateCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to update (required)")
-	ConnectorUpdateCmd.MarkFlagRequired("name")
-	ConnectorUpdateCmd.Flags().StringVarP(&connectorPath, "config-path", "", "", "path to the connector JSON configuration file (required)")
-	ConnectorUpdateCmd.MarkFlagRequired("config-path")
+	ConnectorUpdateCmd.Flags().StringVarP(&connectorPath, "config-file", "f", "", "path to the connector JSON configuration file (required)")
+	ConnectorUpdateCmd.MarkFlagRequired("config-file")
 }
 
 func extractConnectorName(file []byte) string {
