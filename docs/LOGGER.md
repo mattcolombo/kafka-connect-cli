@@ -18,6 +18,4 @@ Further information on the use of the Connect API to control loggers at runtime 
 
 Allowed log levels are the usual Java/log4j levels which are (in increasing verbosity order) `OFF`, `FATAL`, `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`.
 
----
-
 **NOTE:** The log level set in this way is persisted only until the Connect worker gets restarted. Once the Connector worker restarts the log levels for all loggers revert back to the ones set in the Connect worker configuration.
