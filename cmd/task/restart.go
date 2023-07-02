@@ -12,10 +12,12 @@ import (
 var taskRestartID int
 
 var TaskRestartCmd = &cobra.Command{
-	Use:   "restart",
+	Use:   "restart [flags] connector_name",
 	Short: "restarts a connector task",
 	Long:  "Allows to restart a specific task for a connector",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		connectorName = args[0]
 		var path string = "/connectors/" + connectorName + "/tasks/" + strconv.Itoa(taskRestartID) + "/restart"
 		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodPost, path, nil)
@@ -29,6 +31,5 @@ var TaskRestartCmd = &cobra.Command{
 }
 
 func init() {
-	TaskRestartCmd.Flags().IntVarP(&taskRestartID, "id", "", 0, "ID of the task to restart (required)")
-	TaskRestartCmd.MarkFlagRequired("id")
+	TaskRestartCmd.Flags().IntVarP(&taskRestartID, "id", "", 0, "ID of the task to restart")
 }
