@@ -12,17 +12,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-//var configPath string
+//var version = "1.1.0"
 
 var rootCmd = &cobra.Command{
-	Use:   "kconnect-cli",
+	Use: "kconnect-cli",
+	//Version: version,
 	Short: "command line tool to manage a Kafka Connect installation",
 	Long: `A comprehensive command line tool to manage a Kafka Connect installation. 
 Allows to gather information about the cluster, connectors, tasks loggers and manage them.
 ---
 Requires a configuration file either selected through an environment variable "CONNECTCFG" or located in the current working directory.
 ---
-More details and documentation can be found at https://github.com/mattcolombo/kafka-connect-cli`,
+Further details and documentation can be found at https://github.com/mattcolombo/kafka-connect-cli`,
 }
 
 func init() {

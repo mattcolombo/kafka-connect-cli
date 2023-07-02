@@ -11,10 +11,12 @@ import (
 // TODO add capability to print outcome that is not JSON (see task restart); Probably this needs to become a common printer function
 
 var ConnectorDeleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete [flags] connector_name",
 	Short: "delete a connector",
 	Long:  "Allows to delete a connector",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		connectorName = args[0]
 		var path string = "/connectors/" + connectorName
 		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodDelete, path, nil)
@@ -25,9 +27,4 @@ var ConnectorDeleteCmd = &cobra.Command{
 			utilities.PrintEmptyBodyResponse(response, 204, message)
 		}
 	},
-}
-
-func init() {
-	ConnectorDeleteCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to delete (required)")
-	ConnectorDeleteCmd.MarkFlagRequired("name")
 }

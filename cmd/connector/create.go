@@ -35,8 +35,8 @@ var ConnectorCreateCmd = &cobra.Command{
 }
 
 func init() {
-	ConnectorCreateCmd.Flags().StringVarP(&connectorPath, "config-path", "", "", "path to the connector JSON configuration file (required)")
-	ConnectorCreateCmd.MarkFlagRequired("config-path")
+	ConnectorCreateCmd.Flags().StringVarP(&connectorPath, "config-file", "f", "", "path to the connector JSON configuration file (required)")
+	ConnectorCreateCmd.MarkFlagRequired("config-file")
 	ConnectorCreateCmd.Flags().BoolVarP(&validate, "validate", "", false, "validates the connector configuration; connector is NOT created")
 }
 
