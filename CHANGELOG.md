@@ -2,8 +2,6 @@
 
 Throughout this document, :boom: will denote a breaking change
 
-[[_TOC_]]
-
 # v1.1.0
 
 * :boom: `logger get` and `logger set` now take the logger/plugin class name as a positional argument and no longer as a flag
