@@ -10,10 +10,10 @@ Further information on the use of the Connect API to control loggers at runtime 
 
 ## get
 
-`kconnect-cli logger get`: requires flag `--plugin-class` for the logger/plugin class. Provides the log level for the logger specified by `--plugin-class` in each of the Connect workers present. This command uses the `GET /admin/loggers/(string:plugin-class)` endpoint for each of the hosts specified in the CLI configuration file.
+`kconnect-cli logger get`: requires the logger/plugin class name as first positional argument. Provides the log level for the logger specified in each of the Connect workers present. This command uses the `GET /admin/loggers/(string:plugin-class)` endpoint for each of the hosts specified in the CLI configuration file.
 
 ## set
 
-`kconnect-cli logger list`: requires flag `--plugin-class` for the logger/plugin class and `--level` for the log level to set. Allows to set the desired log level for the specified logger in each of the Connect workers present. Allowed log levels are the usual Java/log4j levels which are `ALL`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL`, `OFF`.This command uses the `PUT /admin/loggers/(string:plugin-class)` endpoint for each of the hosts specified in the CLI configuration file.
+`kconnect-cli logger list`: requires the logger/plugin class name as first positional argument. Flag `--level` for the log level to set is available, if absent the level will default to `ERROR`. Allows to set the desired log level for the specified logger in each of the Connect workers present. Allowed log levels are the usual Java/log4j levels which are (in increasing verbosity order) `OFF`, `FATAL`, `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`.This command uses the `PUT /admin/loggers/(string:plugin-class)` endpoint for each of the hosts specified in the CLI configuration file.
 
 **NOTE:** The log level set in this way is persisted only until the Connect worker gets restarted. Once the Connector worker restarts the log levels for all loggers revert back to the ones set in the Connect worker configuration.
