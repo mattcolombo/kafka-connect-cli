@@ -22,7 +22,7 @@ Allows to gather information about the cluster, connectors, tasks loggers and ma
 ---
 Requires a configuration file either selected through an environment variable "CONNECTCFG" or located in the current working directory.
 ---
-More details and documentation can be found at https://github.com/mattcolombo/kafka-connect-cli`,
+Further details and documentation can be found at https://github.com/mattcolombo/kafka-connect-cli`,
 }
 
 func init() {

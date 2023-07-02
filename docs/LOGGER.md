@@ -10,11 +10,11 @@ Further information on the use of the Connect API to control loggers at runtime 
 
 ## get
 
-`kconnect-cli logger get`: requires the logger/plugin class name as first positional argument. Provides the log level for the logger specified in each of the Connect workers present. This command uses the `GET /admin/loggers/(string:plugin-class)` endpoint for each of the hosts specified in the CLI configuration file.
+`kconnect-cli logger get`: requires the logger/plugin class name as first positional argument. Provides the log level for the logger specified in each of the Connect workers present. This command uses the `GET /admin/loggers/(string:logger_name)` endpoint for each of the hosts specified in the CLI configuration file.
 
 ## set
 
-`kconnect-cli logger list`: requires the logger/plugin class name as first positional argument. The flag `--level` for the log level to set is available, if absent the level will default to `ERROR`. This flag allows to set the desired log level for the specified logger in each of the Connect workers present. This command uses the `PUT /admin/loggers/(string:plugin-class)` endpoint for each of the hosts specified in the CLI configuration file.
+`kconnect-cli logger set`: requires the logger/plugin class name as first positional argument. The flag `--level` for the log level to set is available, if absent the level will default to `ERROR`. This flag allows to set the desired log level for the specified logger in each of the Connect workers present. This command uses the `PUT /admin/loggers/(string:logger_name)` endpoint for each of the hosts specified in the CLI configuration file.
 
 Allowed log levels are the usual Java/log4j levels which are (in increasing verbosity order) `OFF`, `FATAL`, `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`.
 
