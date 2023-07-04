@@ -20,20 +20,19 @@ COPY ./utilities/ /builder/utilities/
 COPY ./cmd/ /builder/cmd/
 # building the linux and windows executable
 WORKDIR /builder/cli/
-RUN COMMIT_HASH="$(git rev-parse --short HEAD)"
+RUN COMMIT_HASH=$(git rev-parse --short HEAD)
 RUN BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
 RUN GO_VERSION=$(go version | awk {'print $3'})
 #RUN GIT_COMMIT=$(git rev-list -1 HEAD)
-ARG LDFLAGS = ( \
-    "-X '${PACKAGE}/version.MajorVersion=${MAJVERSION}'" \
-    "-X '${PACKAGE}/version.MinorVersion=${MINVERSION}'" \
-    "-X '${PACKAGE}/version.GitVersion=${GITVERSION}'" \
-    "-X '${PACKAGE}/version.GitHash=${COMMIT_HASH}'" \
-    "-X '${PACKAGE}/version.BuildDate=${BUILD_TIMESTAMP}'" \
-    "-X '${PACKAGE}/version.GoVersion=${GO_VERSION}'" \
-)
-RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="${LDFLAGS[*]}" -o /builder/output/kconnect-cli_linux-amd64_$GITVERSION
-RUN env GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="${LDFLAGS[*]}" -o /builder/output/kconnect-cli_win_amd64_$GITVERSION.exe
+ARG LDFLAGS="-X '$PACKAGE/version.MajorVersion=$MAJVERSION' \
+    -X '$PACKAGE/version.MinorVersion=$MINVERSION' \
+    -X '$PACKAGE/version.GitVersion=$GITVERSION' \
+    -X '$PACKAGE/version.GitHash=$COMMIT_HASH' \
+    -X '$PACKAGE/version.BuildDate=$BUILD_TIMESTAMP' \
+    -X '$PACKAGE/version.GoVersion=$GO_VERSION'"
+RUN echo $LDFLAGS # control statement TODELETE
+RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="$LDFLAGS" -o /builder/output/kconnect-cli_linux-amd64_$GITVERSION
+RUN env GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="$LDFLAGS" -o /builder/output/kconnect-cli_win_amd64_$GITVERSION.exe
 
 FROM scratch as artifact
 COPY --from=builder /builder/output/kconnect-cli* /build-output/
