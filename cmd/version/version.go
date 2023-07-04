@@ -10,12 +10,20 @@ import (
 )
 
 var printJson bool
+var MajorVersion = "NA(manual_build)"
+var MinorVersion = "NA(manual_build)"
+var GitVersion = "NA(manual_build)"
+var GitHash = "NA(manual_build)"
+var BuildDate = "NA(manual_build)"
+var GoVersion = "NA(manual_build)"
 
 var cliVersion = utilities.Version{
-	Major:      1,
-	Minor:      0,
-	GitVersion: "v1.0.1",
-	GitCommit:  "manual_build",
+	Major:      MajorVersion,
+	Minor:      MinorVersion,
+	GitVersion: GitVersion,
+	GitCommit:  GitHash,
+	BuildDate:  BuildDate,
+	GoVersion:  GoVersion,
 }
 
 var VersionCmd = &cobra.Command{
@@ -41,6 +49,7 @@ func init() {
 }
 
 func printSimpleVersion() {
-	fmt.Println("GitVersion:", cliVersion.GitVersion)
-	fmt.Println("GitCommit:", cliVersion.GitCommit)
+	fmt.Println("Git Version:", cliVersion.GitVersion)
+	fmt.Println("Git Commit:", cliVersion.GitCommit)
+	fmt.Println("Build Date:", cliVersion.BuildDate)
 }

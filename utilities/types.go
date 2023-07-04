@@ -39,8 +39,10 @@ type JsonError struct {
 }
 
 type Version struct {
-	Major      int    `json:"major"`
-	Minor      int    `json:"minor"`
+	Major      string `json:"major"`
+	Minor      string `json:"minor"`
 	GitVersion string `json:"gitVersion"`
 	GitCommit  string `json:"gitCommit"`
+	BuildDate  string `json:"buildDate"`
+	GoVersion  string `json:"goVersion"`
 }
