@@ -20,8 +20,8 @@ var cliVersion = utilities.Version{
 
 var VersionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "shows the CLI version and configuration used (if specified)",
-	Long:  "shows the CLI version and configuration used (if specified)",
+	Short: "shows the CLI version",
+	Long:  "shows the short CLI version; allows JSON extended print if specified",
 	Run: func(cmd *cobra.Command, args []string) {
 		if printJson {
 			byte, err := json.Marshal(&cliVersion)
