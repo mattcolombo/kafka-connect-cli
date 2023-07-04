@@ -6,6 +6,7 @@ import (
 
 	"github.com/mattcolombo/kafka-connect-cli/cmd/cluster"
 	"github.com/mattcolombo/kafka-connect-cli/cmd/connector"
+	"github.com/mattcolombo/kafka-connect-cli/cmd/getconfig"
 	"github.com/mattcolombo/kafka-connect-cli/cmd/logger"
 	"github.com/mattcolombo/kafka-connect-cli/cmd/task"
 	"github.com/mattcolombo/kafka-connect-cli/cmd/version"
@@ -33,6 +34,7 @@ func init() {
 	rootCmd.AddCommand(task.TaskCmd)
 	rootCmd.AddCommand(logger.LoggerCmd)
 	rootCmd.AddCommand(version.VersionCmd)
+	rootCmd.AddCommand(getconfig.GetConfigCmd)
 
 	// disabled the default completion command as it is not going to be necessary
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
