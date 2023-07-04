@@ -7,6 +7,8 @@ import (
 	"io"
 	"net/http"
 	"os"
+
+	"gopkg.in/yaml.v3"
 )
 
 func PrintEmptyBodyResponse(response *http.Response, successCode int, message string) {
@@ -35,6 +37,15 @@ func PrettyPrintJson(data []byte) {
 	var prettyData bytes.Buffer
 	json.Indent(&prettyData, data, "", "  ")
 	fmt.Println(prettyData.String())
+}
+
+func PrettyPrintConfigYaml(yamlData ConfigurationYaml) {
+	d, err := yaml.Marshal(&yamlData)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	fmt.Printf("%s", string(d))
 }
 
 func extractMessageFromJsonError(response *http.Response) string {
