@@ -37,3 +37,12 @@ type JsonError struct {
 	Code    int    `json:"error_code"`
 	Message string `json:"message"`
 }
+
+type Version struct {
+	Major      string `json:"major"`
+	Minor      string `json:"minor"`
+	GitVersion string `json:"gitVersion"`
+	GitCommit  string `json:"gitCommit"`
+	BuildDate  string `json:"buildDate"`
+	GoVersion  string `json:"goVersion"`
+}
