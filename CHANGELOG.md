@@ -22,7 +22,8 @@ This version was marked as 2.0 since it contains some design changes and breakin
 
 # v1.0.0
 
-* Initial Release
+Initial Release
+
 * Configuration file (mandatory) allows to specify the details about the Kafka Connect instance to target
 * Full management of connectors and connector tasks (including deployments and validation)
 * Management of log level at runtime
