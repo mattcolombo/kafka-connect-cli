@@ -8,6 +8,7 @@ ARG GITVERSION
 ARG MAJVERSION=1
 ARG MINVERSION=0
 ARG PACKAGE=github.com/mattcolombo/kafka-connect-cli/cmd
+
 # creating the working directory, adding the module and sums file and installing the dependencies
 WORKDIR /builder 
 COPY ./go.mod /builder
@@ -20,6 +21,9 @@ COPY ./utilities/ /builder/utilities/
 COPY ./cmd/ /builder/cmd/
 # building the linux and windows executable
 WORKDIR /builder/cli/
+# installing git in the container so that I can find the hash
+RUN apk update && apk add git
+#get the information about git hash , build timestamp and go version
 RUN COMMIT_HASH=$(git rev-parse --short HEAD)
 RUN BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
 RUN GO_VERSION=$(go version | awk {'print $3'})
