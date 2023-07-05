@@ -46,7 +46,6 @@ Few things I would like to do in the future (when time allows)
 - the output of the `validate` command is very lengthy and most of it is of quite little use in most situation. While the full output should stay, I would like to find a way to shorten it and return only the errors as default;
 - JSON output is the most useful (can be parsed by jq and used in different ways) but I would like to add a human output option;
 - when restarting using `--include-tasks` the output is not clear. Decision needs to be taken on what the output should be and then implemented.
-- create a small utility script that allows to do a full restart of a connector for older versions of Connect where the `--include-tasks` flag does not work.
 
 ## Further reading
 
