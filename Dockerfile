@@ -31,19 +31,7 @@ RUN echo -n " -X '$PACKAGE/version.GitHash=$(git rev-parse --short HEAD)'" >> fl
 RUN echo -n " -X '$PACKAGE/version.BuildDate=$(date '+%Y-%m-%dT%H:%M:%S')'" >> flags
 RUN echo -n " -X '$PACKAGE/version.GoVersion=$(go version | awk {'print $3'})'" >> flags
 
-#RUN export COMMIT_HASH=$(git rev-parse --short HEAD)
-#RUN echo $COMMIT_HASH
-#RUN export BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
-#RUN export GO_VERSION=$(go version | awk {'print $3'})
-#RUN GIT_COMMIT=$(git rev-list -1 HEAD)
-#ARG LDFLAGS="-X '$PACKAGE/version.MajorVersion=$MAJVERSION' \
-#    -X '$PACKAGE/version.MinorVersion=$MINVERSION' \
-#    -X '$PACKAGE/version.GitVersion=$GITVERSION' \
-#    -X '$PACKAGE/version.GitHash=$COMMIT_HASH' \
-#    -X '$PACKAGE/version.BuildDate=$BUILD_TIMESTAMP' \
-#    -X '$PACKAGE/version.GoVersion=$GO_VERSION'"
-# control statement TODELETE
-RUN cat flags 
+# run the build command with the flags created above
 RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="$(cat flags)" -o /builder/output/kconnect-cli_linux-amd64_$GITVERSION
 RUN env GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="$(cat flags)" -o /builder/output/kconnect-cli_win_amd64_$GITVERSION.exe
 
