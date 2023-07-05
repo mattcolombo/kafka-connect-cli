@@ -1,6 +1,6 @@
 # adding an argument as the version, to add to the executables once built
-ARG GITVERSION=v1.1.0
-ARG MAJVERSION=1
+ARG GITVERSION=v2.0.0
+ARG MAJVERSION=2
 ARG MINVERSION=0
 
 # defining the build environment
