@@ -5,6 +5,7 @@ import (
 )
 
 var connectorName string
+var taskID string
 
 var TaskCmd = &cobra.Command{
 	Use:   "task",
