@@ -11,6 +11,7 @@ import (
 )
 
 var setLevel string
+var defaultLevel = "INFO" // TODO set this from the config file intstead than hardcoding
 
 var LoggerSetCmd = &cobra.Command{
 	Use:   "set [flags] logger_name",
@@ -36,7 +37,7 @@ var LoggerSetCmd = &cobra.Command{
 }
 
 func init() {
-	LoggerSetCmd.Flags().StringVarP(&setLevel, "level", "", "ERROR", "log level to set")
+	LoggerSetCmd.Flags().StringVarP(&setLevel, "level", "", defaultLevel, "log level to set")
 }
 
 func buildSetPayload() []byte {
