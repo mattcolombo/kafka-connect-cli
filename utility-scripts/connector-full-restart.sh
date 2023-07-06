@@ -33,5 +33,5 @@ kconnect-cli connector restart $NAME
 
 # restarting all the connector tasks
 for ((i=0;i<=LAST_TASK;i++)); do
-        kconnect-cli task restart $NAME --id $i
+        kconnect-cli task restart $NAME $i
 done
