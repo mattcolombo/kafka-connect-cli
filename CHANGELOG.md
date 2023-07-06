@@ -7,7 +7,7 @@ Throughout this document, :boom: will denote a breaking change
 This version was marked as 2.0 since it contains some design changes and breaking changes.
 
 * :boom: `logger get` and `logger set` now take the logger/plugin class name as a positional argument and no longer as a flag
-* `--level` flag for `logger set` is no longer mandatory and defaults to ERROR when not provided
+* `--level` flag for `logger set` is no longer mandatory and defaults to INFO when not provided
 * :boom: All `task` commands now take the connector name and task ID as positional arguments and no longer as flags
 * :boom: All `connector` commands (where applicable) now take the connector name as a positional argument and no longer as a flag
 * :boom: `--config-path` flag in `connector create` and `connector update` commands has been changed to `--config-file` and a more familiar `-f` shorthand has been added
