@@ -31,5 +31,6 @@ var TaskRestartCmd = &cobra.Command{
 }
 
 func init() {
-	TaskRestartCmd.Flags().IntVarP(&taskRestartID, "id", "", 0, "ID of the task to restart (default 0)")
+	TaskRestartCmd.Flags().IntVarP(&taskRestartID, "id", "", 0, "ID of the task to restart (required)")
+	TaskRestartCmd.MarkFlagRequired("id")
 }

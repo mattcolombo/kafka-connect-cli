@@ -30,5 +30,6 @@ var TaskGetCmd = &cobra.Command{
 }
 
 func init() {
-	TaskGetCmd.Flags().IntVarP(&taskGetID, "id", "", 0, "ID of the task to check (default 0)")
+	TaskGetCmd.Flags().IntVarP(&taskGetID, "id", "", 0, "ID of the task to check (required)")
+	TaskGetCmd.MarkFlagRequired("id")
 }
