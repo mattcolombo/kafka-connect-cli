@@ -50,6 +50,6 @@ RUN chmod +x /background/stay_alive.sh
 CMD ["/background/stay_alive.sh"]
 # creating the working directory, adding the built executable from the previous step and adding the current workdir to the PATH
 WORKDIR /usr/cli
-COPY --from=builder /builder/output/kconnect-cli_linux-amd64_$GITVERSION /usr/cli/kconnect-cli
+COPY --from=builder /builder/output/kconnect-cli_linux_amd64_$GITVERSION /usr/cli/kconnect-cli
 # adding the working directlry to the path, so that the CLI is accessible from any location
 ENV PATH="/usr/cli:${PATH}"
