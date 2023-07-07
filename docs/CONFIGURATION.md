@@ -17,7 +17,7 @@ For Windows systems:
 $env:CONNECTCFG = '<Drive>:\path\to\config-file.yaml'
 ```
 
-For Linux systems:
+For Unix-based systems (Linux and MacOS):
 ```(shell)
 export CONNECTCFG=/path/to/config-file.yaml
 ```
