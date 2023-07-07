@@ -10,12 +10,12 @@ import (
 )
 
 var printJson bool
-var MajorVersion = "(manual_build)"
-var MinorVersion = "(manual_build)"
-var GitVersion = "(manual_build)"
-var GitHash = "(manual_build)"
-var BuildDate = "(manual_build)"
-var GoVersion = "(manual_build)"
+var MajorVersion = "--manual_build--"
+var MinorVersion = "--manual_build--"
+var GitVersion = "--manual_build--"
+var GitHash = "--manual_build--"
+var BuildDate = "--manual_build--"
+var GoVersion = "--manual_build--"
 
 var cliVersion = utilities.Version{
 	Major:      MajorVersion,
