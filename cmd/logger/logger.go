@@ -4,6 +4,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var pluginClass string
+
 var LoggerCmd = &cobra.Command{
 	Use:   "logger",
 	Short: "manage loggers at runtime",

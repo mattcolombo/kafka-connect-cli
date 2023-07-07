@@ -1,39 +1,55 @@
 package version
 
 import (
+	"encoding/json"
 	"fmt"
-	"strings"
+	"os"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
 	"github.com/spf13/cobra"
 )
 
-var showCliConfig bool
+var printJson bool
+var MajorVersion = "--manual_build--"
+var MinorVersion = "--manual_build--"
+var GitVersion = "--manual_build--"
+var GitHash = "--manual_build--"
+var BuildDate = "--manual_build--"
+var GoVersion = "--manual_build--"
 
-var version = []byte(`{
-	"Major": "1", 
-	"Minor": "0", 
-	"GitVersion": "v1.0.0", 
-	"GitCommit": "manual_bild"}`)
+var cliVersion = utilities.Version{
+	Major:      MajorVersion,
+	Minor:      MinorVersion,
+	GitVersion: GitVersion,
+	GitCommit:  GitHash,
+	BuildDate:  BuildDate,
+	GoVersion:  GoVersion,
+}
 
 var VersionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "shows the CLI version and configuration used (if specified)",
-	Long:  "shows the CLI version and configuration used (if specified)",
+	Short: "shows the CLI version",
+	Long:  "shows the short CLI version; allows JSON extended print if specified",
 	Run: func(cmd *cobra.Command, args []string) {
-		utilities.PrettyPrintJson(version)
-		if showCliConfig {
-			printCliCfg()
+		if printJson {
+			byte, err := json.Marshal(&cliVersion)
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+			utilities.PrettyPrintJson(byte)
+		} else {
+			printSimpleVersion()
 		}
 	},
 }
 
 func init() {
-	VersionCmd.Flags().BoolVarP(&showCliConfig, "show-cli-config", "", false, "prints the location and main URL for the configuration file being loaded")
+	VersionCmd.Flags().BoolVarP(&printJson, "json", "j", false, "prints the version information as Json")
 }
 
-func printCliCfg() {
-	fmt.Println("--- Current CLI Configuration ---")
-	fmt.Printf("Configuration for the CLI is being loaded from path: %s\n", utilities.ConfigLoadPath)
-	fmt.Printf("The main URL currently in use is <%s> with protocol %s\n", utilities.ConnectConfiguration.Hostnames[0], strings.ToUpper(utilities.ConnectConfiguration.Protocol))
+func printSimpleVersion() {
+	fmt.Println("Git Version:", cliVersion.GitVersion)
+	fmt.Println("Git Commit:", cliVersion.GitCommit)
+	fmt.Println("Build Date:", cliVersion.BuildDate)
 }

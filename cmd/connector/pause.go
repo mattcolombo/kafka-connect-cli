@@ -11,10 +11,12 @@ import (
 // TODO add capability to print outcome that is not JSON (see task restart); Probably this needs to become a common printer function
 
 var ConnectorPauseCmd = &cobra.Command{
-	Use:   "pause",
+	Use:   "pause [flags] connector_name",
 	Short: "pause a connector",
 	Long:  "Allows to pause a specific connector",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		connectorName = args[0]
 		var path string = "/connectors/" + connectorName + "/pause"
 		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodPut, path, nil)
@@ -25,9 +27,4 @@ var ConnectorPauseCmd = &cobra.Command{
 			utilities.PrintEmptyBodyResponse(response, 202, message)
 		}
 	},
-}
-
-func init() {
-	ConnectorPauseCmd.Flags().StringVarP(&connectorName, "name", "n", "", "name of the connector to pause (required)")
-	ConnectorPauseCmd.MarkFlagRequired("name")
 }

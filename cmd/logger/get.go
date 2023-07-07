@@ -8,15 +8,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var getPluginClass string
+//var getPluginClass string
 
 var LoggerGetCmd = &cobra.Command{
-	Use:   "get",
+	Use:   "get [flags] logger_name",
 	Short: "shows the log level set for a logger",
-	Long:  "Allows to check the level set for a specific logger or connector plugin",
+	Long:  "Allows to check the log level set for a specific logger or connector plugin",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		pluginClass = args[0]
+		fmt.Println("pluiginClass is " + pluginClass) // control statement print
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
-			var loggerListURL string = host + "/admin/loggers/" + getPluginClass
+			var loggerListURL string = host + "/admin/loggers/" + pluginClass
 			fmt.Println("--- Getting Log Level for Connect worker at", host, "---")
 			//fmt.Println("making a call to", loggerListURL) // control statement print
 			response, err := utilities.DoCallByHost(http.MethodGet, loggerListURL, nil)
@@ -27,9 +30,4 @@ var LoggerGetCmd = &cobra.Command{
 			}
 		}
 	},
-}
-
-func init() {
-	LoggerGetCmd.Flags().StringVarP(&getPluginClass, "plugin-class", "", "", "plugin class to check the log level for (required)")
-	LoggerGetCmd.MarkFlagRequired("plugin-class")
 }

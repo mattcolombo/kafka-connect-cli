@@ -21,6 +21,7 @@ If the CLI is being built for multiple systems (or for a system different than t
 ```(shell)
 env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o /builder/output/kconnect-cli_$CLIVERSION_linux
 ```
+**NOTE:** building in this way will mean that the `version` command will not return any useful information aside from the fact that it was built manually since all fields will be set to `manual_build`. Actual values can be passed through LDFLAGS at build time. This is done in the Dockerfile so checking there is advised on the specific variables to set.
 
 ## Using Docker to compile the executable
 

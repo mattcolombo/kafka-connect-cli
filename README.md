@@ -16,7 +16,8 @@ The main commands to manage a connect cluster resource are as follow:
 * `connector` allows to gather information, create and manage connectors. Documentation on the usage of this resource can be found [here](/docs/CONNECTOR.md);
 * `task` allows to gather information and manage connector tasks. Documentation on the usage of this resource can be found [here](/docs/TASK.md);
 * `logger` allows to gather information and manage loggers and log levels. Documentation on the usage of this resource can be found [here](/docs/LOGGER.md);
-* `version` returns the current version of the CLI. If the `--show-cli-config` flag is added, will also provide information on the location of the currently used configuration file and the main URL and protocol of the Connect cluster in use;
+* `version` returns the current version of the CLI. Using the flag `--json` (shorthand `-j`) will print the extended version in Json format;
+* `get-config` shows the path that the active CLI configuration file is being taken from, and prints out the full config file;
 * `help` provides help on the usage of the CLI. It can be used as a command or through the `--help` flag (shorthand `-h`).
 
 ## Quickstart
@@ -45,7 +46,6 @@ Few things I would like to do in the future (when time allows)
 - the output of the `validate` command is very lengthy and most of it is of quite little use in most situation. While the full output should stay, I would like to find a way to shorten it and return only the errors as default;
 - JSON output is the most useful (can be parsed by jq and used in different ways) but I would like to add a human output option;
 - when restarting using `--include-tasks` the output is not clear. Decision needs to be taken on what the output should be and then implemented.
-- create a small utility script that allows to do a full restart of a connector for older versions of Connect where the `--include-tasks` flag does not work.
 
 ## Further reading
 

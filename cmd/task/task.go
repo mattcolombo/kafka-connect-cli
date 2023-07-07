@@ -5,6 +5,7 @@ import (
 )
 
 var connectorName string
+var taskID string
 
 var TaskCmd = &cobra.Command{
 	Use:   "task",
@@ -13,8 +14,6 @@ var TaskCmd = &cobra.Command{
 }
 
 func init() {
-	TaskCmd.PersistentFlags().StringVarP(&connectorName, "name", "n", "", "name of the connector (required)")
-	TaskCmd.MarkPersistentFlagRequired("name")
 	TaskCmd.AddCommand(TaskListCmd)
 	TaskCmd.AddCommand(TaskGetCmd)
 	TaskCmd.AddCommand(TaskRestartCmd)
