@@ -19,6 +19,7 @@ This version was marked as 2.0 since it contains some design changes and breakin
 * Dockerfile builder will now get the correct version and details for the version command directly at build time, instead than having to hardcode them in the CLI itself
 * When building the CLI manually using `go build` alone, all the details on the version will be flagged as `manual_build`
 * Added a utility script (bash only) that does the full restart of a connector by name; this is useful for older versions of connect that are not having the option for a full restart using the native Rest API commands
+* Added build target for MacOSX as well (darwin architecture)
 
 # v1.0.0
 
