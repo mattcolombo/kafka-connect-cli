@@ -4,7 +4,9 @@ Throughout this document, :boom: will denote a breaking change
 
 ## v2.X.X
 
-* First change
+* Value of `logger set` flag `--level` is now validated against the possible set of values before the call to Connect API is made
+* :bug: BUGFIX: the `task_id` argument for `task get` and `task restart` is now validated to ensure it is a digit; the CLI throws an error if that is not the case
+* Documentation and release notes now report ways to download the CLI from GitHub using `cURL`
 
 ## v2.0.0
 
