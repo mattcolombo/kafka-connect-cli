@@ -1,6 +1,10 @@
 package task
 
 import (
+	"fmt"
+	"os"
+	"strconv"
+
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +21,12 @@ func init() {
 	TaskCmd.AddCommand(TaskListCmd)
 	TaskCmd.AddCommand(TaskGetCmd)
 	TaskCmd.AddCommand(TaskRestartCmd)
+}
+
+func validateTaskIdInput(id string) {
+	_, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		fmt.Println("task_id must be a digit")
+		os.Exit(1)
+	}
 }
