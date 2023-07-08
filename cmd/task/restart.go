@@ -16,6 +16,7 @@ var TaskRestartCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		connectorName = args[0]
 		taskID = args[1]
+		validateTaskIdInput(taskID)
 		var path string = "/connectors/" + connectorName + "/tasks/" + taskID + "/restart"
 		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodPost, path, nil)
