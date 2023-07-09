@@ -9,9 +9,9 @@ import (
 )
 
 // architectural decision: use one yaml config file per environment, and that needs to be set in the default location or by ENV variable
-var defaultLocation string = "./kconnect-cli-config.yaml"
-var ConfigLoadPath string = FindConfig()
-var ConnectConfiguration ConfigurationYaml = ImportConfig(ConfigLoadPath)
+var defaultLocation = "./kconnect-cli-config.yaml"
+var ConfigLoadPath = FindConfig()
+var ConnectConfiguration = ImportConfig(ConfigLoadPath)
 
 func FindConfig() string {
 	path, isSet := os.LookupEnv("CONNECTCFG")

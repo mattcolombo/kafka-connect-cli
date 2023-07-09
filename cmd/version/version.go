@@ -9,13 +9,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var printJson bool
-var MajorVersion = "--manual_build--"
-var MinorVersion = "--manual_build--"
-var GitVersion = "--manual_build--"
-var GitHash = "--manual_build--"
-var BuildDate = "--manual_build--"
-var GoVersion = "--manual_build--"
+var (
+	printJson    bool
+	MajorVersion = "--manual_build--"
+	MinorVersion = "--manual_build--"
+	GitVersion   = "--manual_build--"
+	GitHash      = "--manual_build--"
+	BuildDate    = "--manual_build--"
+	GoVersion    = "--manual_build--"
+)
 
 var cliVersion = utilities.Version{
 	Major:      MajorVersion,
@@ -37,7 +39,11 @@ var VersionCmd = &cobra.Command{
 				fmt.Println(err)
 				os.Exit(1)
 			}
-			utilities.PrettyPrintJson(byte)
+			err = utilities.PrettyPrintJson(byte)
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
 		} else {
 			printSimpleVersion()
 		}

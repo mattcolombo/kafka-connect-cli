@@ -7,19 +7,17 @@ import (
 	"os"
 )
 
-// defining the client here means that the client will be created when the module is loaded and will be used throughtout without being recreated for every call
-var client *http.Client = createClient()
-var address string = ConnectConfiguration.Protocol + "://" + ConnectConfiguration.Hostnames[0]
+// defining the client here means that the client will be created when the module is loaded and will be used throughout without being recreated for every call
+var client = createClient()
+var address = ConnectConfiguration.Protocol + "://" + ConnectConfiguration.Hostnames[0]
 
 func DoCallByHost(method, hostPath string, body io.Reader) (*http.Response, error) {
-
-	URL := ConnectConfiguration.Protocol + "://" + hostPath
+	URL := fmt.Sprintf("%s://%s", ConnectConfiguration.Protocol, hostPath)
 	return doCall(method, URL, body)
 }
 
 func DoCallByPath(method, path string, body io.Reader) (*http.Response, error) {
-
-	URL := address + path
+	URL := fmt.Sprintf("%s%s", address, path)
 	return doCall(method, URL, body)
 }
 
@@ -35,11 +33,11 @@ func doCall(method, URL string, body io.Reader) (*http.Response, error) {
 	// adding special headers for various authentication methods
 	if ConnectConfiguration.BasicAuth.Enabled {
 		user := ConnectConfiguration.BasicAuth.User
-		pass := os.Getenv(ConnectConfiguration.BasicAuth.Passref)
+		pass := os.Getenv(ConnectConfiguration.BasicAuth.PassRef)
 		request.SetBasicAuth(user, pass)
 	}
 	if ConnectConfiguration.TokenAuth.Enabled {
-		btoken := "Bearer " + os.Getenv(ConnectConfiguration.TokenAuth.Tokenref)
+		btoken := fmt.Sprintf("Bearer %s", os.Getenv(ConnectConfiguration.TokenAuth.TokenRef))
 		request.Header.Add("Authorization", btoken)
 	}
 	if ConnectConfiguration.ApiKeyAuth.Enabled {

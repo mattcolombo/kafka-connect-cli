@@ -10,13 +10,13 @@ die_func() {
     exit 1
 }
 
-# when TERM signal is given, the aboev function executes before the script exits
+# when TERM signal is given, the above function executes before the script exits
 trap die_func TERM
 
 ## the below block allows to start the "sleep" process as a background process, and waits for it to finish. 
-#  This way if a TERM signal is received, wait will interupt the background command and execute the exit 
+#  This way if a TERM signal is received, wait will interrupt the background command and execute the exit
 #  routines instead than waiting for sleep to finish (which may take a while)
 echo "Sleeping..."
-# the script will complete and hence teminate automatically after one day
+# the script will complete and hence terminate automatically after one day
 sleep 86400 &
 wait

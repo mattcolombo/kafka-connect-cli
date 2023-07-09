@@ -10,8 +10,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var setLevel string
-var defaultLevel = "INFO" // TODO set this from the config file intstead than hardcoding
+var (
+	setLevel     string
+	defaultLevel = "INFO" // TODO set this from the config file instead than hard coding
+)
 
 var LoggerSetCmd = &cobra.Command{
 	Use:   "set [flags] logger_name",
@@ -23,8 +25,8 @@ var LoggerSetCmd = &cobra.Command{
 		pluginClass = args[0]
 		//fmt.Println("pluiginClass is " + pluginClass) // control statement print
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
-			var loggerListURL string = host + "/admin/loggers/" + pluginClass
-			fmt.Println("--- Setting Log Level", setLevel, "for Connect worker at", host, "---")
+			var loggerListURL = fmt.Sprintf("%s/admin/loggers/%s", host, pluginClass)
+			fmt.Printf("--- Setting Log Level %s for Connect worker at %s ---", setLevel, host)
 			//fmt.Println("making a call to", loggerListURL) // control statement print
 			response, err := utilities.DoCallByHost(http.MethodPut, loggerListURL, bytes.NewBuffer(buildSetPayload()))
 			if err != nil {

@@ -17,7 +17,7 @@ var ConnectorRestartCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		connectorName = args[0]
-		var path string = buildRestartPath()
+		var path = buildRestartPath()
 		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodPost, path, nil)
 		if err != nil {
@@ -35,7 +35,7 @@ func init() {
 }
 
 func buildRestartPath() string {
-	path := "/connectors/" + connectorName + "/restart"
+	path := fmt.Sprintf("/connectors/%s/restart", connectorName)
 	if includeTasks && onlyFailed {
 		path += "?includeTasks=true&onlyFailed=true"
 		return path

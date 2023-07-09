@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func createTlsClient(capath string, certpath string, keypath string) *http.Client {
+func createTlsClient(capath string, certPath string, keyPath string) *http.Client {
 
 	// the CertPool wants to add a root as a []byte so we read the file ourselves
 	caCert, err := os.ReadFile(capath)
@@ -19,7 +19,7 @@ func createTlsClient(capath string, certpath string, keypath string) *http.Clien
 	pool.AppendCertsFromPEM(caCert)
 
 	// LoadX509KeyPair reads files, so we give it the paths
-	clientCert, err := tls.LoadX509KeyPair(certpath, keypath)
+	clientCert, err := tls.LoadX509KeyPair(certPath, keyPath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -41,7 +41,7 @@ func createTlsClient(capath string, certpath string, keypath string) *http.Clien
 func createClient() *http.Client {
 	//fmt.Println("I am creating the connect client") // control statement print
 	if ConnectConfiguration.Tls.Enabled {
-		return createTlsClient(ConnectConfiguration.Tls.CaPath, ConnectConfiguration.Tls.Certpath, ConnectConfiguration.Tls.Keypath)
+		return createTlsClient(ConnectConfiguration.Tls.CaPath, ConnectConfiguration.Tls.CertPath, ConnectConfiguration.Tls.KeyPath)
 	} else {
 		return &http.Client{}
 	}
