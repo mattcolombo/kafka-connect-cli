@@ -1,7 +1,7 @@
 # adding an argument as the version, to add to the executables once built
-ARG GITVERSION=v2.0.0
+ARG GITVERSION=v2.X.X
 ARG MAJORVERSION=2
-ARG MINORVERSION=0
+ARG MINORVERSION=X
 
 # defining the build environment
 FROM golang:1.20.5-alpine AS builder 
