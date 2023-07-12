@@ -17,7 +17,7 @@ var LoggerGetCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		pluginClass = args[0]
-		fmt.Println("pluiginClass is " + pluginClass) // control statement print
+		//fmt.Println("pluginClass is " + pluginClass) // control statement print
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
 			var loggerListURL string = host + "/admin/loggers/" + pluginClass
 			fmt.Println("--- Getting Log Level for Connect worker at", host, "---")

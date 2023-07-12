@@ -33,6 +33,17 @@ To do so, you will need to follow few simple steps:
 
 Further information on how to install or build the CLI can be found in the [installation guide](/docs/INSTALLATION-GUIDE.md); a set of samples/utility files and resources can be found in the [samples](/samples-templates/) folder.
 
+Alternatively, to download the CLI binary locally for the required system using CLI use
+* for Linux
+```(bash)
+curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/<version_tag>/kconnect-cli_linux_amd64_<version_tag>
+```
+* for Windows
+```(powershell)
+curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/<version_tag>/kconnect-cli_win_amd64_<version_tag>.exe
+```
+See the [installation guide](/docs/INSTALLATION-GUIDE.md) for more details and a slightly more automated way.
+
 ## Feedback & Contributing
 
 This CLI was created as a personal project aimed at learning more about various technologies (primarily Go, k8s, and Kafka Connect). It is in no way perfect and there may be bugs or unexpected behaviours. If you find any please feel very free to open an issue in the GitHub page of this project, or get in touch with me directly at `mattcolombo.dev@gmail.com` and I will be delighted to have a look. Bear in mind however that this is a side project I am doing on personal time, so I am not guaranteeing any timelines for such fixes (though I will strive to fix simple things timely).

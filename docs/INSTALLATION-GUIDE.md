@@ -23,6 +23,39 @@ env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o /builder/output/kconnect-c
 ```
 **NOTE:** building in this way will mean that the `version` command will not return any useful information aside from the fact that it was built manually since all fields will be set to `manual_build`. Actual values can be passed through LDFLAGS at build time. This is done in the Dockerfile so checking there is advised on the specific variables to set.
 
+## Download from GitHub release
+
+In order to download directly a version of the CLI without using a browser, it's possible to use `cURL` to download the binary for the required version and system.
+
+### Install on Linux
+
+To install the Linux version, we can use the following commands to set the desired version to download
+```(bash)
+export VERSION="vM.m.p"
+```
+or alternatively get the latest version from GitHub
+```(bash)
+export VERSION=$(curl -s https://api.github.com/repos/mattcolombo/kafka-connect-cli/releases/latest | jq -r .tag_name)
+```
+Once the `VERSION` variable is set, we can simply run
+```
+curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/$VERSION/kconnect-cli_linux_amd64_$VERSION
+```
+
+At this point the binary is available so we can change the permissions as required (by default the binary will not be executable), add the download location ot the path or move it to a path location (usuall `/usr/local/bin` or `/usr/bin`).
+
+### Install on Windows
+
+To download the Windows version without a browser we can follow more or less the same process as seen for linux. In powershell, first set the desired version in an environment variable using
+```(powershell)
+$env:VERSION="vM.m.p"
+```
+and then download it using `cURL` as
+```(powershell)
+curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/$env:VERSION/kconnect-cli_win_amd64_$env:VERSION.exe
+```
+
+
 ## Using Docker to compile the executable
 
 An alternative to compiling the executable directly is to use Docker to do that for us. The Dockerfile provided in this repository is structured as a multistage build, and includes a builder stage that leverages the go-alpine image to compile the CLI and produce the executables as output. Then depending on how the docker build is called, these executables (for Windows and Linux with AMD64 architectures for the time being) are either downloaded locally for use or distribution, or packaged in an Ubuntu.
