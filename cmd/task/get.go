@@ -16,8 +16,8 @@ var TaskGetCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		connectorName = args[0]
 		taskID = args[1]
-		validateTaskIdInput(taskID)
-		var path string = "/connectors/" + connectorName + "/tasks/" + taskID + "/status"
+    validateTaskIdInput(taskID)
+		var path = fmt.Sprintf("/connectors/%s/tasks/%s/status", connectorName, taskID)
 		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodGet, path, nil)
 		if err != nil {

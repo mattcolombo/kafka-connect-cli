@@ -12,19 +12,19 @@ type ConfigurationYaml struct {
 type Tls struct {
 	Enabled  bool   `yaml:"enabled"`
 	CaPath   string `yaml:"capath"`
-	Certpath string `yaml:"certpath"`
-	Keypath  string `yaml:"keypath"`
+	CertPath string `yaml:"certpath"`
+	KeyPath  string `yaml:"keypath"`
 }
 
 type BasicAuth struct {
 	Enabled bool   `yaml:"enabled"`
 	User    string `yaml:"user"`
-	Passref string `yaml:"passref"`
+	PassRef string `yaml:"passref"`
 }
 
 type TokenAuth struct {
 	Enabled  bool   `yaml:"enabled"`
-	Tokenref string `yaml:"tokenref"`
+	TokenRef string `yaml:"tokenref"`
 }
 
 type ApiKeyAuth struct {

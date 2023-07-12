@@ -19,8 +19,8 @@ var LoggerGetCmd = &cobra.Command{
 		pluginClass = args[0]
 		//fmt.Println("pluginClass is " + pluginClass) // control statement print
 		for _, host := range utilities.ConnectConfiguration.Hostnames {
-			var loggerListURL string = host + "/admin/loggers/" + pluginClass
-			fmt.Println("--- Getting Log Level for Connect worker at", host, "---")
+			var loggerListURL = fmt.Sprintf("%s/admin/loggers/%s", host, pluginClass)
+			fmt.Printf("--- Getting Log Level for Connect worker at %s ---", host)
 			//fmt.Println("making a call to", loggerListURL) // control statement print
 			response, err := utilities.DoCallByHost(http.MethodGet, loggerListURL, nil)
 			if err != nil {

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/mattcolombo/kafka-connect-cli/utilities"
@@ -41,25 +42,31 @@ func init() {
 }
 
 func doCreateCall(configFile []byte) (*http.Response, error) {
-	var path string = "/connectors"
+	var path = "/connectors"
 	//fmt.Println("making a call to", path) // control statement print
 	requestBody := bytes.NewBuffer(configFile)
 	return utilities.DoCallByPath(http.MethodPost, path, requestBody)
 }
 
 func doValidateCall(configFile []byte) (*http.Response, error) {
-	pluginName := extractPluginType(configFile)
-	var path string = "/connector-plugins/" + pluginName + "/config/validate"
+	pluginName, err := extractPluginType(configFile)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "unable to extractPluginType %s", err)
+		os.Exit(1)
+	}
+	var path = fmt.Sprintf("/connector-plugins/%s/config/validate", pluginName)
 	//fmt.Println("making a call to", path) // control statement print
 	configData := extractConnectorConfig(configFile)
 	requestBody := bytes.NewBuffer(configData)
 	return utilities.DoCallByPath(http.MethodPut, path, requestBody)
 }
 
-func extractPluginType(file []byte) string {
+func extractPluginType(file []byte) (string, error) {
 	var jsonConfig connectConfig
-	json.Unmarshal(file, &jsonConfig)
+	if err := json.Unmarshal(file, &jsonConfig); err != nil {
+		return "", err
+	}
 	pluginClass := jsonConfig.Config["connector.class"]
 	pluginName := strings.Split(pluginClass, ".")
-	return pluginName[len(pluginName)-1]
+	return pluginName[len(pluginName)-1], nil
 }

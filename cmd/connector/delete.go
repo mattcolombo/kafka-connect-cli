@@ -17,7 +17,7 @@ var ConnectorDeleteCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		connectorName = args[0]
-		var path string = "/connectors/" + connectorName
+		var path = fmt.Sprintf("/connectors/%s", connectorName)
 		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodDelete, path, nil)
 		if err != nil {

@@ -26,12 +26,12 @@ if [[ "$#" -ne 1 ]]; then
 fi
 
 # getting the id of the last task from the tasks list
-LAST_TASK=$(kconnect-cli task list $NAME | jq -r .[-1].id.task)
+LAST_TASK=$(kconnect-cli task list "$NAME" | jq -r .[-1].id.task)
 
 # restarting the connector main process
-kconnect-cli connector restart $NAME
+kconnect-cli connector restart "$NAME"
 
 # restarting all the connector tasks
 for ((i=0;i<=LAST_TASK;i++)); do
-        kconnect-cli task restart $NAME $i
+        kconnect-cli task restart "$NAME" "$i"
 done

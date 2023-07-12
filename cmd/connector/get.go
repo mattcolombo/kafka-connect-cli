@@ -17,9 +17,9 @@ var ConnectorGetCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		connectorName = args[0]
-		// check that only one of the status and cofig flags are used (if any)
+		// check that only one of the status and config flags are used (if any)
 		utilities.CheckMutuallyExclusive(configOnly, statusOnly, "the --status and --config flags are mutually exclusive. Please use only one.")
-		var path string = buildGetPath()
+		var path = buildGetPath()
 		//fmt.Println("making a call to", path) // control statement print
 		response, err := utilities.DoCallByPath(http.MethodGet, path, nil)
 		if err != nil {
@@ -36,7 +36,7 @@ func init() {
 }
 
 func buildGetPath() string {
-	var path string = "/connectors/" + connectorName
+	var path = fmt.Sprintf("/connectors/%s", connectorName)
 	if statusOnly {
 		path += "/status"
 	} else if configOnly {

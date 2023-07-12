@@ -8,8 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var connectorName string
-var taskID string
+var connectorName, taskID string
 
 var TaskCmd = &cobra.Command{
 	Use:   "task",
