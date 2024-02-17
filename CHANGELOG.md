@@ -4,11 +4,13 @@ Throughout this document, :boom: will denote a breaking change
 
 ## v2.X.X
 
+* Bumped Go version to 1.22.0
 * Value of `logger set` flag `--level` is now validated against the possible set of values before the call to Connect API is made
 * :bug: BUGFIX: the `task_id` argument for `task get` and `task restart` is now validated to ensure it is a digit; the CLI throws an error if that is not the case
 * Documentation and release notes now report ways to download the CLI from GitHub using `cURL`
 * Improvements and bugfixes courtesy of @EladLeev
-
+* Added compilation target for `arm64` architecture for MacOS -- :warn: NOT TESTED
+ 
 ## v2.0.0
 
 This version was marked as 2.0 since it contains some design changes and breaking changes.
@@ -26,7 +28,7 @@ This version was marked as 2.0 since it contains some design changes and breakin
 * Dockerfile builder will now get the correct version and details for the version command directly at build time, instead than having to hardcode them in the CLI itself
 * When building the CLI manually using `go build` alone, all the details on the version will be flagged as `manual_build`
 * Added a utility script (bash only) that does the full restart of a connector by name; this is useful for older versions of connect that are not having the option for a full restart using the native Rest API commands
-* Added build target for MacOSX as well (darwin architecture) -- :warn: NOT TESTED
+* Added build target for MacOS as well (darwin architecture) -- :warn: NOT TESTED
 
 ## v1.0.0
 
