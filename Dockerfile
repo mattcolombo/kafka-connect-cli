@@ -4,7 +4,7 @@ ARG MAJORVERSION=2
 ARG MINORVERSION=X
 
 # defining the build environment
-FROM golang:1.20.5-alpine AS builder 
+FROM golang:1.22.0-alpine AS builder 
 # refreshing ARG value for current image
 ARG GITVERSION
 ARG MAJORVERSION
