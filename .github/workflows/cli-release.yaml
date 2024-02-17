@@ -1,12 +1,9 @@
 name: Kafka Connect CLI Release
 
-# on:
-#   push:
-#     tags:
-#       - 'v[0-9]+.[0-9]+.[0-9]+'
-
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 env:
   DOCKER_USR: mattcolombo
@@ -67,4 +64,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ env.DOCKER_USR }}/kafka-connect-cli:action-test
+        tags: ${{ env.DOCKER_USR }}/kafka-connect-cli:${{ github.ref_name }}
