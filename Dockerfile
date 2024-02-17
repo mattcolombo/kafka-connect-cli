@@ -16,8 +16,6 @@ RUN apk update && apk add git
 WORKDIR /builder 
 COPY . /builder
 RUN go mod download
-# building the linux and windows executable
-WORKDIR /builder/cli/
 # creating a file to store the ldflags for go builder
 RUN touch ./flags
 #get the information about git hash , build timestamp and go version and add them to the flags file
