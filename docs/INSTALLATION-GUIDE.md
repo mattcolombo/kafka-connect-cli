@@ -41,11 +41,11 @@ Once the `VERSION` variable is set, for Linux systems we can simply run
 ```
 curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/$VERSION/kconnect-cli_linux_amd64_$VERSION
 ```
-while for MacOS we can use (for `amd64` systems)
+while for MacOS we can use (for `amd64` architectures)
 ```
 curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/$VERSION/kconnect-cli_darwin_amd64_$VERSION
 ```
-or (for `arm64` systems)
+or (for `arm64` architectures)
 ```
 curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/$VERSION/kconnect-cli_darwin_arm64_$VERSION
 ```
