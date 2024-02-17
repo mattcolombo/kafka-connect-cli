@@ -27,7 +27,7 @@ env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o /builder/output/kconnect-c
 
 In order to download directly a version of the CLI without using a browser, it's possible to use `cURL` to download the binary for the required version and system.
 
-### Install on Linux
+### Install on Linux/MacOS
 
 To install the Linux version, we can use the following commands to set the desired version to download
 ```(bash)
@@ -37,9 +37,17 @@ or alternatively get the latest version from GitHub
 ```(bash)
 export VERSION=$(curl -s https://api.github.com/repos/mattcolombo/kafka-connect-cli/releases/latest | jq -r .tag_name)
 ```
-Once the `VERSION` variable is set, we can simply run
+Once the `VERSION` variable is set, for Linux systems we can simply run
 ```
 curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/$VERSION/kconnect-cli_linux_amd64_$VERSION
+```
+while for MacOS we can use (for `amd64` systems)
+```
+curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/$VERSION/kconnect-cli_darwin_amd64_$VERSION
+```
+or (for `arm64` systems)
+```
+curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/$VERSION/kconnect-cli_darwin_arm64_$VERSION
 ```
 
 At this point the binary is available so we can change the permissions as required (by default the binary will not be executable), add the download location ot the path or move it to a path location (usuall `/usr/local/bin` or `/usr/bin`).
