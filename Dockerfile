@@ -4,7 +4,7 @@ ARG MAJORVERSION=2
 ARG MINORVERSION=X
 
 # defining the build environment
-FROM golang:1.20.5-alpine AS builder 
+FROM golang:1.22.0-alpine AS builder 
 # refreshing ARG value for current image
 ARG GITVERSION
 ARG MAJORVERSION
@@ -16,8 +16,6 @@ RUN apk update && apk add git
 WORKDIR /builder 
 COPY . /builder
 RUN go mod download
-# building the linux and windows executable
-WORKDIR /builder/cli/
 # creating a file to store the ldflags for go builder
 RUN touch ./flags
 #get the information about git hash , build timestamp and go version and add them to the flags file
@@ -30,6 +28,7 @@ RUN echo -n " -X '$PACKAGE/version.GoVersion=$(go version | awk {'print $3'})'" 
 # run the build command with the flags created above
 RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="$(cat flags)" -o /builder/output/kconnect-cli_linux_amd64_$GITVERSION
 RUN env GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="$(cat flags)" -o /builder/output/kconnect-cli_darwin_amd64_$GITVERSION
+RUN env GOOS=darwin GOARCH=arm64 CGO_ENABLED=0 go build -ldflags="$(cat flags)" -o /builder/output/kconnect-cli_darwin_arm64_$GITVERSION
 RUN env GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="$(cat flags)" -o /builder/output/kconnect-cli_win_amd64_$GITVERSION.exe
 
 FROM scratch as artifact
