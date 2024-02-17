@@ -84,7 +84,7 @@ One may also wish to run the CLI in Docker directly. This may create some challe
 
 ### Pulling the prebuilt image from Docker Hub
 
-Whenever a new version of the CLI is released, a DOcker image will be available in Docker Hub with the latest version of the CLI prepackaged in. To use this simply pull the image using
+Whenever a new version of the CLI is released, a Docker image will be available in Docker Hub with the latest version of the CLI prepackaged in. To use this simply pull the image using
 
 ```
 docker pull mattcolombo/kafka-connect-cli:<tag>
