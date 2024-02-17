@@ -1,7 +1,15 @@
-name: Release of kconnect-cli
+name: Kafka Connect CLI Release
+
+# on:
+#   push:
+#     tags:
+#       - 'v[0-9]+.[0-9]+.[0-9]+'
 
 on:
   workflow_dispatch:
+
+env:
+  DOCKER_USR: mattcolombo
 
 jobs:
 
@@ -14,10 +22,10 @@ jobs:
       id: checkout
       name: Checkout
       uses: actions/checkout@v4
-    # - 
-    #   id: buildx-setup
-    #   name: Set up Docker Buildx
-    #   uses: docker/setup-buildx-action@v3
+    - 
+      id: buildx-setup
+      name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
     -
       id: build-cli-artifacts
       name: Build and download binaries
@@ -45,7 +53,7 @@ jobs:
       name: Login to DockerHub
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.DOCKER_USR }}
+        username: ${{ env.DOCKER_USR }}
         password: ${{ secrets.DOCKER_PAT }}
     - 
       id: buildx-setup
@@ -59,4 +67,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_USR }}/kafka-connect-cli:action-test
+        tags: ${{ env.DOCKER_USR }}/kafka-connect-cli:action-test
