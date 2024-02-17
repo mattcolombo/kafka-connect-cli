@@ -38,6 +38,10 @@ Alternatively, to download the CLI binary locally for the required system using 
 ```(bash)
 curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/<version_tag>/kconnect-cli_linux_amd64_<version_tag>
 ```
+* for Linux
+```(bash)
+curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/<version_tag>/kconnect-cli_darwin_<amd64/arm64>_<version_tag>
+```
 * for Windows
 ```(powershell)
 curl -LO https://github.com/mattcolombo/kafka-connect-cli/releases/download/<version_tag>/kconnect-cli_win_amd64_<version_tag>.exe
