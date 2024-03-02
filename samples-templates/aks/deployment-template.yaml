@@ -24,12 +24,23 @@ spec:
           - name: kconnect-cli-config-volume
             mountPath: "/usr/cli/config/"
             readOnly: true
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
           resources:
             requests:
               cpu: 100m
               memory: 32Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
       volumes: 
       - name: kconnect-cli-config-volume
         secret:
           secretName: <secret-name>
           optional: false
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+        fsGroup: 999
+        runAsNonRoot: true
